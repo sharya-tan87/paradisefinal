@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { submitAppointmentRequest, searchPatients, createPatient } from '../services/api';
 
 const CreateRequestModal = ({ isOpen, onClose, onSuccess }) => {
-    const { t } = useTranslation();
+    // Translation hook ready for i18n
+    const _t = useTranslation();
 
     // Step: 'select' | 'existing' | 'new' | 'appointment'
     const [step, setStep] = useState('select');

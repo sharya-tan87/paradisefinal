@@ -20,7 +20,7 @@ const DentistProfileModal = ({ isOpen, onClose, userId, userName }) => {
     const [previewImage, setPreviewImage] = useState(null);
     const [imageFile, setImageFile] = useState(null);
 
-    const { register, handleSubmit, reset, control, watch, setValue, formState: { errors } } = useForm({
+    const { register, handleSubmit, reset, control, watch, setValue, formState: { errors: _errors } } = useForm({
         defaultValues: {
             licenseNumber: '',
             specializations: [],
@@ -101,12 +101,10 @@ const DentistProfileModal = ({ isOpen, onClose, userId, userName }) => {
                         setPreviewImage(`${host}${profile.imagePath}`);
                     }
                 }
-            } catch (err) {
+            } catch {
                 // Profile doesn't exist yet, use defaults
-                console.log('No existing profile, using defaults');
             }
-        } catch (error) {
-            console.error('Error loading data:', error);
+        } catch {
             setMessage({ type: 'error', text: t('dentistProfile.error.loadFailed') });
         } finally {
             setLoading(false);

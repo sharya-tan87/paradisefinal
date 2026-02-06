@@ -21,7 +21,7 @@ const PatientsPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [totalRecords, setTotalRecords] = useState(0);
+    const [totalRecords, setTotalRecords] = useState(0); // eslint-disable-line no-unused-vars
 
     // Modal States
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -37,7 +37,7 @@ const PatientsPage = () => {
         if (userStr) {
             try {
                 setUser(JSON.parse(userStr));
-            } catch (e) {
+            } catch {
                 navigate('/login');
             }
         } else {
@@ -120,13 +120,13 @@ const PatientsPage = () => {
             {/* Header Section */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-primary-900 flex items-center gap-3">
+                    <h1 className="text-2xl sm:text-3xl font-bold text-gradient-brand flex items-center gap-3">
                         {t('patientsPage.title')}
-                        <span className="text-sm font-normal text-gray-500 bg-gray-100 px-2 py-0.5 rounded-full">
+                        <span className="text-sm font-normal text-text-secondary bg-gray-100 px-2 py-0.5 rounded-full">
                             {totalRecords}
                         </span>
                     </h1>
-                    <p className="text-gray-500 mt-1">{t('patientsPage.subtitle')}</p>
+                    <p className="text-text-secondary mt-1">{t('patientsPage.subtitle')}</p>
                 </div>
                 <button
                     onClick={() => setIsCreateModalOpen(true)}
@@ -166,8 +166,8 @@ const PatientsPage = () => {
             ) : patients.length === 0 ? (
                 <div className="bg-white rounded-xl border border-dashed border-gray-300 p-12 text-center">
                     <User className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900">{t('patientsPage.noData')}</h3>
-                    <p className="text-gray-500 mt-1">{t('patientsPage.noDataDesc')}</p>
+                    <h3 className="text-lg font-medium text-gradient-brand">{t('patientsPage.noData')}</h3>
+                    <p className="text-text-secondary mt-1">{t('patientsPage.noDataDesc')}</p>
                 </div>
             ) : (
                 <>
@@ -193,9 +193,9 @@ const PatientsPage = () => {
                                             </span>
                                         </td>
                                         <td className="px-6 py-4">
-                                            <div className="font-medium text-gray-900">{patient.title} {patient.firstName} {patient.lastName}</div>
+                                            <div className="font-medium text-text-secondary">{patient.title} {patient.firstName} {patient.lastName}</div>
                                         </td>
-                                        <td className="px-6 py-4 text-sm text-gray-500 capitalize">
+                                        <td className="px-6 py-4 text-sm text-text-secondary capitalize">
                                             {new Date().getFullYear() - new Date(patient.dateOfBirth).getFullYear()} yrs / {patient.gender}
                                         </td>
                                         <td className="px-6 py-4 text-sm text-gray-500">
@@ -247,10 +247,10 @@ const PatientsPage = () => {
                                         <span className="text-xs font-bold text-primary-600 bg-primary-50 px-2 py-0.5 rounded mb-2 inline-block">
                                             {patient.hn}
                                         </span>
-                                        <h3 className="font-bold text-gray-900 text-lg">
+                                        <h3 className="font-bold text-gradient-brand text-lg">
                                             {patient.firstName} {patient.lastName}
                                         </h3>
-                                        <p className="text-sm text-gray-500 capitalize">
+                                        <p className="text-sm text-text-secondary capitalize">
                                             {patient.gender} • {new Date().getFullYear() - new Date(patient.dateOfBirth).getFullYear()} years old
                                         </p>
                                     </div>
@@ -321,7 +321,7 @@ const PatientsPage = () => {
                             className="bg-white rounded-xl shadow-xl w-full max-w-2xl my-8 p-6 animate-in fade-in zoom-in-95 duration-200 relative"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <h2 className="text-2xl font-bold text-primary-900 mb-6">{t('patientsPage.modal.createTitle')}</h2>
+                            <h2 className="text-2xl font-bold text-gradient-brand mb-6">{t('patientsPage.modal.createTitle')}</h2>
                             <PatientForm
                                 onSubmit={handleCreate}
                                 onCancel={() => setIsCreateModalOpen(false)}
@@ -344,7 +344,7 @@ const PatientsPage = () => {
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="flex justify-between items-center mb-6">
-                                <h2 className="text-2xl font-bold text-primary-900">{t('patientsPage.modal.editTitle')}</h2>
+                                <h2 className="text-2xl font-bold text-gradient-brand">{t('patientsPage.modal.editTitle')}</h2>
                                 <span className="bg-primary-100 text-primary-800 text-xs font-bold px-2 py-1 rounded">
                                     {selectedPatient.hn}
                                 </span>

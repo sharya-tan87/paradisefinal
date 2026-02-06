@@ -95,14 +95,15 @@ const BillingPage = () => {
     };
 
     const getStatusBadgeClass = (status) => {
+        // Brand-compliant status colors using only #CEE0F3, #2D7C9C, #214491
         switch (status) {
             case 'paid':
-                return 'bg-green-100 text-green-700';
+                return 'bg-brand text-white';
             case 'partially-paid':
-                return 'bg-amber-100 text-amber-700';
+                return 'bg-brand-light text-brand-dark border border-brand';
             case 'unpaid':
             default:
-                return 'bg-red-100 text-red-700';
+                return 'bg-brand-dark text-white';
         }
     };
 
@@ -125,11 +126,11 @@ const BillingPage = () => {
                 {/* Page Header */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-primary-900 flex items-center gap-3">
+                        <h1 className="text-3xl font-bold text-gradient-brand flex items-center gap-3">
                             <DollarSign className="text-teal-600" />
                             {t('billingPage.title')}
                         </h1>
-                        <p className="text-gray-500 mt-1">{t('billingPage.subtitle')}</p>
+                        <p className="text-text-secondary mt-1">{t('billingPage.subtitle')}</p>
                     </div>
                     <button
                         onClick={() => setIsCreateModalOpen(true)}
@@ -143,8 +144,8 @@ const BillingPage = () => {
                 {/* Summary Cards */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                     <div className="bg-white p-5 rounded-xl border border-primary-100 shadow-sm">
-                        <p className="text-gray-500 text-sm">{t('billingPage.totalInvoices')}</p>
-                        <p className="text-3xl font-bold text-primary-900">{invoices.length}</p>
+                        <p className="text-text-secondary text-sm">{t('billingPage.totalInvoices')}</p>
+                        <p className="text-3xl font-bold text-brand-dark">{invoices.length}</p>
                     </div>
                     <div className="bg-gradient-to-br from-red-50 to-red-100 p-5 rounded-xl border border-red-200">
                         <p className="text-red-600 text-sm font-medium">{t('billingPage.unpaidAmount')}</p>
@@ -218,8 +219,8 @@ const BillingPage = () => {
                 ) : invoices.length === 0 ? (
                     <div className="bg-white rounded-xl border border-dashed border-gray-300 p-12 text-center">
                         <FileText className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                        <h3 className="text-lg font-medium text-gray-900">{t('billingPage.noInvoices')}</h3>
-                        <p className="text-gray-500 mt-1">{t('billingPage.noInvoicesDesc')}</p>
+                        <h3 className="text-lg font-medium text-gradient-brand">{t('billingPage.noInvoices')}</h3>
+                        <p className="text-text-secondary mt-1">{t('billingPage.noInvoicesDesc')}</p>
                     </div>
                 ) : (
                     <>
@@ -245,15 +246,15 @@ const BillingPage = () => {
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <div className="font-medium text-gray-900">
+                                                <div className="font-medium text-text-secondary">
                                                     {invoice.patient?.firstName} {invoice.patient?.lastName}
                                                 </div>
-                                                <div className="text-xs text-gray-500">{invoice.patientHN}</div>
+                                                <div className="text-xs text-text-secondary">{invoice.patientHN}</div>
                                             </td>
-                                            <td className="px-6 py-4 text-sm text-gray-600">
+                                            <td className="px-6 py-4 text-sm text-text-secondary">
                                                 {new Date(invoice.invoiceDate).toLocaleDateString()}
                                             </td>
-                                            <td className="px-6 py-4 text-right font-mono font-medium text-gray-900">
+                                            <td className="px-6 py-4 text-right font-mono font-medium text-text-secondary">
                                                 ฿{parseFloat(invoice.totalAmount).toLocaleString(undefined, { minimumFractionDigits: 2 })}
                                             </td>
                                             <td className="px-6 py-4">
@@ -305,10 +306,10 @@ const BillingPage = () => {
                                             <span className="text-xs font-bold text-primary-600 bg-primary-50 px-2 py-0.5 rounded">
                                                 {invoice.invoiceNumber}
                                             </span>
-                                            <h3 className="font-bold text-gray-900 mt-2">
+                                            <h3 className="font-bold text-gradient-brand mt-2">
                                                 {invoice.patient?.firstName} {invoice.patient?.lastName}
                                             </h3>
-                                            <p className="text-sm text-gray-500">{new Date(invoice.invoiceDate).toLocaleDateString()}</p>
+                                            <p className="text-sm text-text-secondary">{new Date(invoice.invoiceDate).toLocaleDateString()}</p>
                                         </div>
                                         <span className={`px-2 py-1 rounded-full text-xs font-bold uppercase ${getStatusBadgeClass(invoice.paymentStatus)}`}>
                                             {getStatusLabel(invoice.paymentStatus)}
@@ -316,7 +317,7 @@ const BillingPage = () => {
                                     </div>
 
                                     <div className="flex justify-between items-center pt-3 border-t border-gray-100">
-                                        <span className="font-mono font-bold text-lg text-primary-900">
+                                        <span className="font-mono font-bold text-lg text-brand-dark">
                                             ฿{parseFloat(invoice.totalAmount).toLocaleString(undefined, { minimumFractionDigits: 2 })}
                                         </span>
                                         <div className="flex gap-2">

@@ -219,13 +219,13 @@ const DentistAppointmentsPage = () => {
             <div className="mb-6">
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                     <div>
-                        <h1 className="text-2xl font-bold text-slate-800 flex items-center gap-3">
+                        <h1 className="text-2xl font-bold text-gradient-brand flex items-center gap-3">
                             <div className="bg-teal-100 p-2.5 rounded-xl">
                                 <CalendarDays className="w-6 h-6 text-teal-600" />
                             </div>
                             {t('dentistAppointments.header') || 'My Appointments'}
                         </h1>
-                        <p className="text-slate-500 mt-1 ml-12">
+                        <p className="text-text-secondary mt-1 ml-12">
                             {t('dentistAppointments.subtitle') || 'View and manage your scheduled appointments'}
                         </p>
                     </div>
@@ -316,7 +316,7 @@ const DentistAppointmentsPage = () => {
                     <div className="bg-slate-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Calendar className="w-10 h-10 text-slate-300" />
                     </div>
-                    <h3 className="text-lg font-semibold text-slate-700 mb-2">
+                    <h3 className="text-lg font-semibold text-gradient-brand mb-2">
                         {t('dentistAppointments.noAppointments') || 'No appointments'}
                     </h3>
                     <p className="text-slate-500">
@@ -365,7 +365,7 @@ const DentistAppointmentsPage = () => {
                                                         <User className="w-5 h-5 text-slate-600" />
                                                     </div>
                                                     <div>
-                                                        <h3 className="font-semibold text-slate-800 text-lg">
+                                                        <h3 className="font-semibold text-gradient-brand text-lg">
                                                             {patientName}
                                                         </h3>
                                                         <span className="text-xs text-slate-500 bg-slate-100 px-2 py-0.5 rounded font-mono">
@@ -375,11 +375,11 @@ const DentistAppointmentsPage = () => {
                                                 </div>
 
                                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
-                                                    <div className="flex items-center gap-2 text-slate-600">
+                                                    <div className="flex items-center gap-2 text-text-secondary">
                                                         <Phone className="w-4 h-4 text-slate-400" />
                                                         <span>{patientPhone}</span>
                                                     </div>
-                                                    <div className="flex items-center gap-2 text-slate-600">
+                                                    <div className="flex items-center gap-2 text-text-secondary">
                                                         <Stethoscope className="w-4 h-4 text-slate-400" />
                                                         <span>{appointment.serviceType || '-'}</span>
                                                     </div>
@@ -428,42 +428,44 @@ const DentistAppointmentsPage = () => {
                     })}
                 </div>
             ) : viewMode === 'calendar' ? (
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6">
+                <div className="bg-white rounded-2xl shadow-sm border border-brand-light p-6">
                     <style>{`
+                        /* Brand-compliant FullCalendar styles */
+                        /* Colors: #CEE0F3 (light), #2D7C9C (brand), #214491 (dark) */
                         .fc { font-family: inherit; }
-                        .fc-theme-standard td, .fc-theme-standard th { border-color: #E5E7EB; }
-                        .fc-col-header-cell { background-color: #F9FAFB; padding: 10px 0; }
+                        .fc-theme-standard td, .fc-theme-standard th { border-color: #CEE0F3; }
+                        .fc-col-header-cell { background-color: #CEE0F3; padding: 10px 0; }
                         .fc-timegrid-slot { height: 3rem; }
-                        
+
                         .fc-header-toolbar { margin-bottom: 1.5rem !important; }
-                        .fc-toolbar-title { font-size: 1.25rem !important; font-weight: 600 !important; color: #111827; }
-                        
-                        .fc-button-primary { 
-                            background-color: #0D9488 !important; 
-                            border-color: #0D9488 !important; 
+                        .fc-toolbar-title { font-size: 1.25rem !important; font-weight: 600 !important; color: #214491; }
+
+                        .fc-button-primary {
+                            background-color: #2D7C9C !important;
+                            border-color: #2D7C9C !important;
                             font-weight: 500 !important;
                             padding: 0.5rem 1rem !important;
                             border-radius: 0.5rem !important;
                         }
-                        .fc-button-primary:hover { 
-                            background-color: #0F766E !important; 
-                            border-color: #0F766E !important;
+                        .fc-button-primary:hover {
+                            background-color: #214491 !important;
+                            border-color: #214491 !important;
                         }
-                        .fc-button-active { 
-                            background-color: #0F766E !important; 
-                            border-color: #0F766E !important; 
+                        .fc-button-active {
+                            background-color: #214491 !important;
+                            border-color: #214491 !important;
                         }
-                        
-                        .fc-event { 
-                            border-radius: 4px; 
-                            border: none; 
-                            padding: 2px 4px; 
-                            font-size: 0.85rem; 
+
+                        .fc-event {
+                            border-radius: 4px;
+                            border: none;
+                            padding: 2px 4px;
+                            font-size: 0.85rem;
                             cursor: pointer;
                         }
                         .fc-event:hover { filter: brightness(1.1); }
-                        
-                        .fc-day-today { background-color: #F0FDFA !important; }
+
+                        .fc-day-today { background-color: rgba(206, 224, 243, 0.3) !important; }
                     `}</style>
 
                     <FullCalendar
@@ -510,7 +512,7 @@ const DentistAppointmentsPage = () => {
                                 </div>
                             );
                         }}
-                        eventClick={(info) => {
+                        eventClick={() => {
                             // Can show details or start treatment
                             // For now, simpler handling or same as list view?
                         }}

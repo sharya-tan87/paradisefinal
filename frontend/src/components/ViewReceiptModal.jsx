@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { X, Printer } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import businessConfig from '../config/business';
 
 const ViewReceiptModal = ({ isOpen, onClose, invoice }) => {
     const { t } = useTranslation();
@@ -17,24 +18,24 @@ const ViewReceiptModal = ({ isOpen, onClose, invoice }) => {
                 <title>Receipt ${invoice.invoiceNumber}</title>
                 <style>
                     * { box-sizing: border-box; margin: 0; padding: 0; }
-                    body { font-family: 'Prompt', 'Helvetica Neue', sans-serif; padding: 40px; color: #1a365d; }
-                    .receipt-header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #0d9488; padding-bottom: 20px; }
-                    .receipt-header h1 { color: #0d9488; font-size: 24px; margin-bottom: 4px; text-transform: uppercase; }
-                    .receipt-header h2 { font-size: 16px; color: #64748b; font-weight: normal; }
+                    body { font-family: 'Prompt', 'Helvetica Neue', sans-serif; padding: 40px; color: #214491; }
+                    .receipt-header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #2D7C9C; padding-bottom: 20px; }
+                    .receipt-header h1 { color: #2D7C9C; font-size: 24px; margin-bottom: 4px; text-transform: uppercase; }
+                    .receipt-header h2 { font-size: 16px; color: #214491; font-weight: normal; }
                     .info-grid { display: flex; justify-content: space-between; margin-bottom: 30px; }
                     .info-col { width: 48%; }
-                    .label { font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-                    .value { font-size: 14px; font-weight: 500; color: #334155; margin-bottom: 12px; }
+                    .label { font-size: 10px; color: #2D7C9C; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+                    .value { font-size: 14px; font-weight: 500; color: #214491; margin-bottom: 12px; }
                     .table { width: 100%; border-collapse: collapse; margin: 20px 0; }
-                    .table th { text-align: left; font-size: 10px; text-transform: uppercase; color: #64748b; padding: 8px 0; border-bottom: 1px solid #e2e8f0; }
-                    .table td { padding: 12px 0; border-bottom: 1px solid #f1f5f9; font-size: 13px; color: #334155; }
-                    .totals { margin-top: 20px; border-top: 1px dashed #cbd5e1; padding-top: 20px; }
-                    .total-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; color: #64748b; }
-                    .grand-total { font-size: 18px; font-weight: bold; color: #0d9488; margin-top: 10px; }
-                    .footer { margin-top: 50px; text-align: center; font-size: 10px; color: #94a3b8; }
-                    .stamp { 
-                        border: 2px solid #0d9488; color: #0d9488; display: inline-block; 
-                        padding: 8px 20px; text-transform: uppercase; font-weight: bold; 
+                    .table th { text-align: left; font-size: 10px; text-transform: uppercase; color: #2D7C9C; padding: 8px 0; border-bottom: 1px solid #CEE0F3; }
+                    .table td { padding: 12px 0; border-bottom: 1px solid #CEE0F3; font-size: 13px; color: #214491; }
+                    .totals { margin-top: 20px; border-top: 1px dashed #CEE0F3; padding-top: 20px; }
+                    .total-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; color: #2D7C9C; }
+                    .grand-total { font-size: 18px; font-weight: bold; color: #2D7C9C; margin-top: 10px; }
+                    .footer { margin-top: 50px; text-align: center; font-size: 10px; color: #2D7C9C; }
+                    .stamp {
+                        border: 2px solid #2D7C9C; color: #2D7C9C; display: inline-block;
+                        padding: 8px 20px; text-transform: uppercase; font-weight: bold;
                         letter-spacing: 1px; transform: rotate(-5deg); margin-top: 20px;
                     }
                 </style>
@@ -77,7 +78,7 @@ const ViewReceiptModal = ({ isOpen, onClose, invoice }) => {
                             <h1 className="text-2xl font-bold text-teal-700 uppercase tracking-widest">Official Receipt</h1>
                         </div>
                         <h2 className="text-gray-500 font-normal">ใบเสร็จรับเงิน</h2>
-                        <p className="text-xs text-gray-400 mt-2">Paradise Dental Clinic • 123 Sukhumvit Rd, Bangkok</p>
+                        <p className="text-xs text-gray-400 mt-2">{businessConfig.clinic.name} • {businessConfig.clinic.address}</p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-8 mb-6">

@@ -7,29 +7,32 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary': {
-          50: '#F0F7FF',
-          100: '#CEE0F3',     // Light Blue - for subtle backgrounds, borders
-          500: '#2D7C9C',     // Teal Blue - for primary buttons, icons, accents
-          600: '#24637D',     // Darker Teal - for button hovers or active states
-          700: '#1B4A5E',     // Deep Teal
-          900: '#214491',     // Deep Navy - for headings, primary text
-        },
+        // Brand colors ONLY - Three-color system
         'brand': {
           light: '#CEE0F3',   // Light Blue - section backgrounds, cards, dividers, icon containers
           DEFAULT: '#2D7C9C', // Teal Blue - icons, subheadings, hover states, primary buttons
           dark: '#214491',    // Deep Navy - headings, main nav, button hover states
         },
-        'text': {
-          main: '#1F2937',      // Equivalent to gray-800
-          secondary: '#4B5563', // Equivalent to gray-600
-        },
-        'status': {
-          success: '#10B981',
-          warning: '#F59E0B',
-          danger: '#EF4444',
+        // Mapped primary colors for compatibility
+        'primary': {
+          50: '#F5FAFD',
+          100: '#CEE0F3',
+          200: '#A8D4EB',
+          300: '#82C8E3',
+          400: '#58BCDB',
+          500: '#2D7C9C',
+          600: '#2A6E99',
+          700: '#276096',
+          800: '#245293',
+          900: '#214491',
+          950: '#0F2248',
         },
         'white': '#FFFFFF',
+        'text-secondary': '#4B5563', // Dark Grey for paragraphs
+        // Note: Use brand colors with opacity for status states
+        // Success: bg-brand text-white
+        // Warning: bg-brand-light text-brand-dark border-brand
+        // Error: bg-brand-dark text-white
       },
       fontFamily: {
         'prompt': ['Prompt', 'sans-serif']

@@ -3,16 +3,17 @@ import { useTranslation } from 'react-i18next';
 
 const StatusBadge = ({ status }) => {
     const { t } = useTranslation();
+    // Brand-compliant status styles using only #CEE0F3, #2D7C9C, #214491
     const statusStyles = {
-        pending: 'bg-amber-100 text-amber-800',
-        contacted: 'bg-blue-100 text-blue-800',
-        confirmed: 'bg-green-100 text-green-800',
-        cancelled: 'bg-red-100 text-red-800',
-        completed: 'bg-gray-100 text-gray-800',
+        pending: 'bg-brand-light text-brand-dark border border-brand-dark/20',
+        contacted: 'bg-brand-light text-brand border border-brand/30',
+        confirmed: 'bg-brand text-white',
+        cancelled: 'bg-brand-dark text-white',
+        completed: 'bg-brand-light/50 text-brand-dark border border-brand-light',
     };
 
     const statusKey = status?.toLowerCase();
-    const style = statusStyles[statusKey] || 'bg-gray-100 text-gray-800';
+    const style = statusStyles[statusKey] || 'bg-brand-light text-brand-dark';
 
     return (
         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize ${style}`}>

@@ -33,10 +33,10 @@ const PatientDashboard = () => {
 
                     {/* Welcome Message */}
                     <div>
-                        <h1 className="text-3xl font-bold text-primary-900">
+                        <h1 className="text-3xl font-bold text-gradient-brand">
                             Welcome, {user.username}!
                         </h1>
-                        <p className="text-gray-600 mt-2">
+                        <p className="text-text-secondary mt-2">
                             Manage your appointments and personalized care here.
                         </p>
                     </div>
@@ -50,8 +50,8 @@ const PatientDashboard = () => {
                                         <User className="h-8 w-8 text-primary-500" />
                                     </div>
                                     <div>
-                                        <h2 className="text-xl font-bold text-primary-900">My Profile</h2>
-                                        <p className="text-sm text-primary-500 font-medium">
+                                        <h2 className="text-xl font-bold text-gradient-brand">My Profile</h2>
+                                        <p className="text-sm text-brand font-medium">
                                             {user.role.charAt(0).toUpperCase() + user.role.slice(1)} Account
                                         </p>
                                     </div>
@@ -59,18 +59,18 @@ const PatientDashboard = () => {
 
                                 <div className="space-y-4">
                                     <div>
-                                        <label className="block text-sm font-semibold text-primary-900 mb-1">
+                                        <label className="block text-sm font-semibold text-text-secondary mb-1">
                                             Username
                                         </label>
-                                        <p className="text-gray-700 bg-gray-50 px-3 py-2 rounded-lg border border-gray-100">
+                                        <p className="text-text-secondary bg-gray-50 px-3 py-2 rounded-lg border border-gray-100">
                                             {user.username}
                                         </p>
                                     </div>
                                     <div>
-                                        <label className="block text-sm font-semibold text-primary-900 mb-1">
+                                        <label className="block text-sm font-semibold text-text-secondary mb-1">
                                             Email Address
                                         </label>
-                                        <p className="text-gray-700 bg-gray-50 px-3 py-2 rounded-lg border border-gray-100">
+                                        <p className="text-text-secondary bg-gray-50 px-3 py-2 rounded-lg border border-gray-100">
                                             {user.email || 'No email provided'}
                                         </p>
                                     </div>
@@ -82,7 +82,7 @@ const PatientDashboard = () => {
                         {/* Task 5: Navigation Placeholder */}
                         <div className="lg:col-span-2">
                             <div className="bg-white border border-primary-100 rounded-xl shadow-soft p-6">
-                                <h2 className="text-xl font-bold text-primary-900 mb-6">Quick Actions</h2>
+                                <h2 className="text-xl font-bold text-gradient-brand mb-6">Quick Actions</h2>
 
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {/* Placeholder: My Appointments */}
@@ -90,7 +90,7 @@ const PatientDashboard = () => {
                                         <div className="bg-white p-3 rounded-full mb-3 ml-auto mr-auto shadow-sm">
                                             <Calendar className="h-8 w-8 text-gray-400" />
                                         </div>
-                                        <h3 className="font-bold text-gray-500 text-lg mb-1">My Appointments</h3>
+                                        <h3 className="font-bold text-text-secondary text-lg mb-1">My Appointments</h3>
                                         <span className="text-xs font-medium bg-gray-200 text-gray-600 px-2 py-1 rounded-full">Coming Soon</span>
                                     </div>
 
@@ -99,7 +99,7 @@ const PatientDashboard = () => {
                                         <div className="bg-white p-3 rounded-full mb-3 ml-auto mr-auto shadow-sm">
                                             <FileText className="h-8 w-8 text-gray-400" />
                                         </div>
-                                        <h3 className="font-bold text-gray-500 text-lg mb-1">Treatment History</h3>
+                                        <h3 className="font-bold text-text-secondary text-lg mb-1">Treatment History</h3>
                                         <span className="text-xs font-medium bg-gray-200 text-gray-600 px-2 py-1 rounded-full">Coming Soon</span>
                                     </div>
 
@@ -108,7 +108,7 @@ const PatientDashboard = () => {
                                         <div className="bg-white p-3 rounded-full mb-3 ml-auto mr-auto shadow-sm">
                                             <Receipt className="h-8 w-8 text-gray-400" />
                                         </div>
-                                        <h3 className="font-bold text-gray-500 text-lg mb-1">My Invoices</h3>
+                                        <h3 className="font-bold text-text-secondary text-lg mb-1">My Invoices</h3>
                                         <span className="text-xs font-medium bg-gray-200 text-gray-600 px-2 py-1 rounded-full">Coming Soon</span>
                                     </div>
                                 </div>

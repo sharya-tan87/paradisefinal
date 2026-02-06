@@ -1,4 +1,8 @@
 const { Model, DataTypes, Op } = require('sequelize');
+const { encrypt, decrypt } = require('../utils/encryption');
+
+// Fields that should be encrypted at rest (PHI - Protected Health Information)
+const ENCRYPTED_FIELDS = ['phone', 'medicalHistory', 'allergies', 'currentMedications'];
 
 module.exports = (sequelize) => {
     class Patient extends Model {
@@ -132,7 +136,42 @@ module.exports = (sequelize) => {
         tableName: 'patients',
         timestamps: true,
         createdAt: 'created_at',
-        updatedAt: 'updated_at'
+        updatedAt: 'updated_at',
+        hooks: {
+            // Encrypt sensitive fields before saving
+            beforeCreate: (patient) => {
+                ENCRYPTED_FIELDS.forEach(field => {
+                    if (patient[field]) {
+                        patient[field] = encrypt(patient[field]);
+                    }
+                });
+            },
+            beforeUpdate: (patient) => {
+                ENCRYPTED_FIELDS.forEach(field => {
+                    if (patient.changed(field) && patient[field]) {
+                        patient[field] = encrypt(patient[field]);
+                    }
+                });
+            },
+            // Decrypt sensitive fields after retrieval
+            afterFind: (result) => {
+                if (!result) return;
+
+                const decryptPatient = (patient) => {
+                    ENCRYPTED_FIELDS.forEach(field => {
+                        if (patient[field]) {
+                            patient[field] = decrypt(patient[field]);
+                        }
+                    });
+                };
+
+                if (Array.isArray(result)) {
+                    result.forEach(decryptPatient);
+                } else {
+                    decryptPatient(result);
+                }
+            }
+        }
     });
 
     return Patient;

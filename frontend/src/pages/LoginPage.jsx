@@ -54,14 +54,14 @@ const LoginPage = () => {
 
     return (
         <div className="min-h-screen bg-white flex items-center justify-center p-4">
-            <div className="w-full max-w-[400px] bg-white border border-primary-100 rounded-xl shadow-soft p-6 md:p-8 font-prompt">
+            <div className="w-full max-w-[400px] bg-white border border-brand-light rounded-xl shadow-soft p-6 md:p-8 font-prompt">
 
                 {/* Header / Logo Section */}
                 <div className="text-center mb-8">
-                    <h1 className="text-2xl md:text-3xl font-bold text-primary-900 mb-2">
+                    <h1 className="text-2xl md:text-3xl font-bold text-brand-dark mb-2">
                         Paradise Dental
                     </h1>
-                    <p className="text-primary-500 font-medium">
+                    <p className="text-brand font-medium">
                         Welcome Back
                     </p>
                 </div>
@@ -80,14 +80,14 @@ const LoginPage = () => {
                     <div className="space-y-2">
                         <label
                             htmlFor="username"
-                            className="block text-primary-900 font-medium"
+                            className="block text-text-secondary font-medium"
                         >
                             Username
                         </label>
                         <input
                             id="username"
                             type="text"
-                            className={`w-full bg-white border ${errors.username ? 'border-red-500' : 'border-gray-200'} rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-primary-500 transition-colors`}
+                            className={`w-full bg-white border ${errors.username ? 'border-red-500' : 'border-brand-light'} rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand transition-colors`}
                             placeholder="Enter your username"
                             {...register('username', { required: 'Username is required' })}
                         />
@@ -100,7 +100,7 @@ const LoginPage = () => {
                     <div className="space-y-2">
                         <label
                             htmlFor="password"
-                            className="block text-primary-900 font-medium"
+                            className="block text-text-secondary font-medium"
                         >
                             Password
                         </label>
@@ -108,14 +108,14 @@ const LoginPage = () => {
                             <input
                                 id="password"
                                 type={showPassword ? 'text' : 'password'}
-                                className={`w-full bg-white border ${errors.password ? 'border-red-500' : 'border-gray-200'} rounded-lg px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-primary-100 focus:border-primary-500 transition-colors`}
+                                className={`w-full bg-white border ${errors.password ? 'border-red-500' : 'border-brand-light'} rounded-lg px-4 py-3 pr-12 focus:outline-none focus:ring-2 focus:ring-brand-light focus:border-brand transition-colors`}
                                 placeholder="Enter your password"
                                 {...register('password', { required: 'Password is required' })}
                             />
                             <button
                                 type="button"
                                 onClick={togglePasswordVisibility}
-                                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-primary-500 hover:text-primary-900 transition-colors focus:outline-none"
+                                className="absolute right-4 top-1/2 transform -translate-y-1/2 text-brand hover:text-brand-dark transition-colors focus:outline-none"
                                 aria-label={showPassword ? "Hide password" : "Show password"}
                             >
                                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
@@ -130,7 +130,7 @@ const LoginPage = () => {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-primary-500 text-white rounded-lg px-6 py-3 hover:bg-primary-900 transition-colors shadow-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        className="w-full bg-brand text-white rounded-lg px-6 py-3 hover:bg-brand-dark transition-colors shadow-sm font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                         {isSubmitting && <Loader2 className="animate-spin" size={20} />}
                         {isSubmitting ? 'Signing In...' : 'Sign In'}

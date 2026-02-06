@@ -80,12 +80,9 @@ const AdminToolsPage = () => {
             if (roleFilter !== 'all') params.role = roleFilter;
             if (searchTerm) params.search = searchTerm;
 
-            console.log('🔍 Fetching users with params:', params);
             const res = await getAdminUsers(params);
-            console.log('✅ Got response:', res);
             setUsers(res || []);
         } catch (error) {
-            console.error('❌ Fetch users error:', error);
             setMessage({ type: 'error', text: error.message || error.error || 'Failed to load users' });
         } finally {
             setLoading(false);
@@ -176,11 +173,11 @@ const AdminToolsPage = () => {
             {/* Page Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-primary-900 flex items-center gap-3">
+                    <h1 className="text-3xl font-bold text-gradient-brand flex items-center gap-3">
                         <Shield className="text-teal-600" />
                         {t('adminTools.title')}
                     </h1>
-                    <p className="text-gray-500 mt-1">{t('adminTools.subtitle')}</p>
+                    <p className="text-text-secondary mt-1">{t('adminTools.subtitle')}</p>
                 </div>
                 <button
                     onClick={handleOpenCreateModal}
@@ -240,8 +237,8 @@ const AdminToolsPage = () => {
             ) : users.length === 0 ? (
                 <div className="bg-white rounded-xl border border-dashed border-gray-300 p-12 text-center">
                     <Users className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900">{t('adminTools.table.noUsers')}</h3>
-                    <p className="text-gray-500 mt-1">{t('adminTools.table.noUsersDesc')}</p>
+                    <h3 className="text-lg font-medium text-gradient-brand">{t('adminTools.table.noUsers')}</h3>
+                    <p className="text-text-secondary mt-1">{t('adminTools.table.noUsersDesc')}</p>
                 </div>
             ) : (
                 <>
@@ -261,12 +258,12 @@ const AdminToolsPage = () => {
                                 {users.map((user) => (
                                     <tr key={user.id} className="hover:bg-gray-50 transition-colors group">
                                         <td className="px-6 py-4">
-                                            <div className="font-medium text-gray-900">{user.username}</div>
-                                            <div className="text-sm text-gray-500">
+                                            <div className="font-medium text-text-secondary">{user.username}</div>
+                                            <div className="text-sm text-text-secondary">
                                                 {user.firstName || user.lastName ? `${user.firstName || ''} ${user.lastName || ''}`.trim() : '-'}
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4 text-gray-600">{user.email}</td>
+                                        <td className="px-6 py-4 text-text-secondary">{user.email}</td>
                                         <td className="px-6 py-4">
                                             <span className={`px-2 py-1 rounded-full text-xs font-bold uppercase ${getRoleBadgeClass(user.role)}`}>
                                                 {t(`staffDashboard.role.${user.role}`)}
@@ -337,8 +334,8 @@ const AdminToolsPage = () => {
                             <div key={user.id} className="bg-white p-5 rounded-xl shadow-sm border border-primary-100">
                                 <div className="flex justify-between items-start mb-3">
                                     <div>
-                                        <h3 className="font-bold text-gray-900">{user.username}</h3>
-                                        <p className="text-sm text-gray-500">{user.email}</p>
+                                        <h3 className="font-bold text-gradient-brand">{user.username}</h3>
+                                        <p className="text-sm text-text-secondary">{user.email}</p>
                                     </div>
                                     <span className={`px-2 py-1 rounded-full text-xs font-bold uppercase ${getRoleBadgeClass(user.role)}`}>
                                         {t(`staffDashboard.role.${user.role}`)}
@@ -399,12 +396,12 @@ const AdminToolsPage = () => {
             {confirmModal.open && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
                     <div className="bg-white rounded-xl shadow-xl w-full max-w-md p-6">
-                        <h3 className="text-lg font-bold text-gray-900 mb-4">
+                        <h3 className="text-lg font-bold text-gradient-brand mb-4">
                             {confirmModal.type === 'deactivate' ? t('adminTools.modal.deactivateTitle') :
                                 confirmModal.type === 'activate' ? t('adminTools.modal.activateTitle') :
                                     t('adminTools.modal.deleteTitle')}
                         </h3>
-                        <p className="text-gray-600 mb-6">
+                        <p className="text-text-secondary mb-6">
                             {confirmModal.type === 'deactivate' ? t('adminTools.modal.confirmDeactivate') :
                                 confirmModal.type === 'activate' ? t('adminTools.modal.confirmActivate') :
                                     t('adminTools.modal.confirmDelete')} <strong>{confirmModal.user?.username}</strong>?

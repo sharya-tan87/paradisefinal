@@ -9,6 +9,22 @@ const api = axios.create({
     },
 });
 
+// Request interceptor - automatically attach token to every request
+api.interceptors.request.use(
+    (config) => {
+        // Skip adding auth for login/refresh/public endpoints
+        if (config.url?.includes('/auth/login') || config.url?.includes('/auth/refresh')) {
+            return config;
+        }
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user?.accessToken) {
+            config.headers['Authorization'] = 'Bearer ' + user.accessToken;
+        }
+        return config;
+    },
+    (error) => Promise.reject(error)
+);
+
 // Flag to prevent multiple refresh calls
 let isRefreshing = false;
 let failedQueue = [];
@@ -24,6 +40,13 @@ const processQueue = (error, token = null) => {
     failedQueue = [];
 };
 
+const clearAuthAndRedirect = () => {
+    localStorage.removeItem('user');
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    window.location.href = '/login';
+};
+
 // Response interceptor for automatic token refresh
 api.interceptors.response.use(
     (response) => response,
@@ -32,6 +55,9 @@ api.interceptors.response.use(
 
         // If error is 401 and we haven't tried to refresh yet
         if (error.response?.status === 401 && !originalRequest._retry) {
+            // Mark this request so it won't trigger another refresh cycle
+            originalRequest._retry = true;
+
             if (isRefreshing) {
                 // If already refreshing, queue this request
                 return new Promise((resolve, reject) => {
@@ -42,7 +68,6 @@ api.interceptors.response.use(
                 }).catch(err => Promise.reject(err));
             }
 
-            originalRequest._retry = true;
             isRefreshing = true;
 
             const user = JSON.parse(localStorage.getItem('user'));
@@ -50,8 +75,8 @@ api.interceptors.response.use(
             if (!user?.refreshToken) {
                 // No refresh token, redirect to login
                 isRefreshing = false;
-                localStorage.removeItem('user');
-                window.location.href = '/login';
+                processQueue(new Error('No refresh token'), null);
+                clearAuthAndRedirect();
                 return Promise.reject(error);
             }
 
@@ -65,6 +90,8 @@ api.interceptors.response.use(
                 // Update stored tokens
                 const updatedUser = { ...user, accessToken, refreshToken };
                 localStorage.setItem('user', JSON.stringify(updatedUser));
+                localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('refreshToken', refreshToken);
 
                 // Update authorization header
                 api.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken;
@@ -78,8 +105,7 @@ api.interceptors.response.use(
             } catch (refreshError) {
                 processQueue(refreshError, null);
                 isRefreshing = false;
-                localStorage.removeItem('user');
-                window.location.href = '/login';
+                clearAuthAndRedirect();
                 return Promise.reject(refreshError);
             }
         }
@@ -350,15 +376,9 @@ export const getDashboardAnalytics = async (params) => {
 export const getAdminUsers = async (params) => {
     try {
         const authDetails = getAuthDetails();
-        console.log('🔐 Auth details:', authDetails);
-        console.log('📡 Calling GET /admin/users with params:', params);
         const response = await api.get('/admin/users', { ...authDetails, params });
-        console.log('📨 API Response:', response);
-        console.log('📊 Response data:', response.data);
         return response.data;
     } catch (error) {
-        console.error('🚨 API Error:', error);
-        console.error('🚨 Error response:', error.response);
         throw error.response ? error.response.data : new Error('Network Error');
     }
 };

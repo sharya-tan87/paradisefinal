@@ -66,11 +66,8 @@ const StaffDashboard = () => {
 
     const loadStaffStats = async () => {
         try {
-            // Try to get dashboard analytics if available
-            const today = new Date().toISOString().split('T')[0];
-
-            // Fetch appointments for today count (simplified - real implementation would use a dedicated endpoint)
-            const { getCalendarAppointments, searchPatients } = await import('../services/api');
+            // Fetch appointments for today count
+            const { getCalendarAppointments } = await import('../services/api');
 
             const startOfDay = new Date();
             startOfDay.setHours(0, 0, 0, 0);
@@ -120,8 +117,8 @@ const StaffDashboard = () => {
                     <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col justify-between hover:shadow-md transition-shadow">
                         <div className="flex items-start justify-between">
                             <div>
-                                <p className="text-slate-500 text-sm font-medium">{t('dentistDashboard.todaysAppointments')}</p>
-                                <h3 className="text-3xl font-bold text-slate-800 mt-2">{todayAppointments}</h3>
+                                <p className="text-text-secondary text-sm font-medium">{t('dentistDashboard.todaysAppointments')}</p>
+                                <h3 className="text-3xl font-bold text-gradient-brand mt-2">{todayAppointments}</h3>
                             </div>
                             <div className="bg-blue-50 p-2.5 rounded-xl">
                                 <Calendar className="w-5 h-5 text-blue-600" />
@@ -156,8 +153,8 @@ const StaffDashboard = () => {
                     >
                         <div className="flex items-start justify-between">
                             <div>
-                                <p className="text-slate-500 text-sm font-medium">{t('dentistDashboard.workSchedule')}</p>
-                                <h3 className="text-lg font-bold text-slate-800 mt-2">
+                                <p className="text-text-secondary text-sm font-medium">{t('dentistDashboard.workSchedule')}</p>
+                                <h3 className="text-lg font-bold text-gradient-brand mt-2">
                                     {dentistProfile?.workingHours ? `${dentistProfile.workingHours.start} - ${dentistProfile.workingHours.end}` : '09:00 - 17:00'}
                                 </h3>
                             </div>
@@ -230,7 +227,7 @@ const StaffDashboard = () => {
 
                 {/* Recent Items / Quick Actions */}
                 <div>
-                    <h3 className="text-lg font-bold text-slate-800 mb-4">{t('dentistDashboard.quickActions')}</h3>
+                    <h3 className="text-lg font-bold text-gradient-brand mb-4">{t('dentistDashboard.quickActions')}</h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <button
                             onClick={() => navigate('/dashboard/treatments')}
@@ -319,7 +316,7 @@ const StaffDashboard = () => {
                     <div className="px-6 pb-6 space-y-6">
                         {/* Name & Title */}
                         <div>
-                            <h2 className="text-2xl font-bold text-slate-800">{user.username}</h2>
+                            <h2 className="text-2xl font-bold text-gradient-brand">{user.username}</h2>
                             <div className="flex flex-wrap items-center gap-2 mt-2">
                                 <span className="text-xs font-bold text-brand-dark px-2.5 py-1 rounded-md bg-blue-50 border border-blue-100 uppercase tracking-wider">
                                     {t('staffDashboard.role.dentist')}
@@ -488,7 +485,7 @@ const StaffDashboard = () => {
             <div className="lg:col-span-2 space-y-8">
                 {/* Welcome Section - Desktop */}
                 <div className="hidden md:block">
-                    <h1 className="text-3xl font-bold text-primary-900">
+                    <h1 className="text-3xl font-bold text-gradient-brand">
                         {t('staffDashboard.welcome', { name: user.username })}
                         <span className={`ml-3 text-sm px-3 py-1 rounded-full text-white align-middle ${user.role === 'admin' ? 'bg-red-500' :
                             user.role === 'manager' ? 'bg-orange-500' :
@@ -498,7 +495,7 @@ const StaffDashboard = () => {
                             {t(`staffDashboard.role.${user.role}`, user.role.charAt(0).toUpperCase() + user.role.slice(1))}
                         </span>
                     </h1>
-                    <p className="text-gray-600 mt-2">
+                    <p className="text-text-secondary mt-2">
                         {t('staffDashboard.accessTools')}
                     </p>
                 </div>
@@ -506,7 +503,7 @@ const StaffDashboard = () => {
                 {/* Mobile Welcome Section (Condensed) */}
                 <div className="md:hidden mb-6">
                     <div className="flex items-center gap-2 mb-2">
-                        <span className="text-lg font-bold text-primary-900">{user.username}</span>
+                        <span className="text-lg font-bold text-gradient-brand">{user.username}</span>
                         <span className={`text-xs px-2 py-0.5 rounded-full text-white ${user.role === 'admin' ? 'bg-red-500' :
                             user.role === 'manager' ? 'bg-orange-500' :
                                 user.role === 'dentist' ? 'bg-purple-500' :
@@ -515,7 +512,7 @@ const StaffDashboard = () => {
                             {t(`staffDashboard.role.${user.role}`, user.role.charAt(0).toUpperCase() + user.role.slice(1))}
                         </span>
                     </div>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-text-secondary">
                         {t('staffDashboard.accessTools')}
                     </p>
                 </div>
@@ -588,70 +585,70 @@ const StaffDashboard = () => {
 
                 {/* Quick Actions */}
                 <div className="bg-white border border-primary-100 rounded-xl shadow-soft p-6 mb-6">
-                    <h3 className="text-lg font-bold text-primary-900 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-gradient-brand mb-4 flex items-center gap-2">
                         <Activity className="h-5 w-5 text-primary-500" />
                         {t('staffDashboard.widgets.quickActions')}
                     </h3>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                         <button
                             onClick={() => navigate('/dashboard/appointments')}
-                            className="flex flex-col items-center p-4 bg-gray-50 hover:bg-teal-50 rounded-xl transition-colors group"
+                            className="flex flex-col items-center p-4 bg-brand-light/30 hover:bg-teal-50 rounded-xl transition-colors group"
                         >
                             <div className="bg-teal-100 p-3 rounded-full mb-2 group-hover:bg-teal-200 transition-colors">
                                 <Calendar className="h-5 w-5 text-teal-600" />
                             </div>
-                            <span className="text-sm font-medium text-gray-700">{t('staffDashboard.widgets.newAppointment')}</span>
+                            <span className="text-sm font-medium text-text-main">{t('staffDashboard.widgets.newAppointment')}</span>
                         </button>
 
                         <button
                             onClick={() => navigate('/dashboard/patients')}
-                            className="flex flex-col items-center p-4 bg-gray-50 hover:bg-blue-50 rounded-xl transition-colors group"
+                            className="flex flex-col items-center p-4 bg-brand-light/30 hover:bg-blue-50 rounded-xl transition-colors group"
                         >
                             <div className="bg-blue-100 p-3 rounded-full mb-2 group-hover:bg-blue-200 transition-colors">
                                 <Users className="h-5 w-5 text-blue-600" />
                             </div>
-                            <span className="text-sm font-medium text-gray-700">{t('staffDashboard.widgets.registerPatient')}</span>
+                            <span className="text-sm font-medium text-text-main">{t('staffDashboard.widgets.registerPatient')}</span>
                         </button>
 
                         <button
                             onClick={() => navigate('/dashboard/queue')}
-                            className="flex flex-col items-center p-4 bg-gray-50 hover:bg-purple-50 rounded-xl transition-colors group"
+                            className="flex flex-col items-center p-4 bg-brand-light/30 hover:bg-purple-50 rounded-xl transition-colors group"
                         >
                             <div className="bg-purple-100 p-3 rounded-full mb-2 group-hover:bg-purple-200 transition-colors">
                                 <ClipboardList className="h-5 w-5 text-purple-600" />
                             </div>
-                            <span className="text-sm font-medium text-gray-700">{t('staffDashboard.widgets.manageQueue')}</span>
+                            <span className="text-sm font-medium text-text-main">{t('staffDashboard.widgets.manageQueue')}</span>
                         </button>
 
                         <button
                             onClick={() => navigate('/dashboard/billing')}
-                            className="flex flex-col items-center p-4 bg-gray-50 hover:bg-green-50 rounded-xl transition-colors group"
+                            className="flex flex-col items-center p-4 bg-brand-light/30 hover:bg-green-50 rounded-xl transition-colors group"
                         >
                             <div className="bg-green-100 p-3 rounded-full mb-2 group-hover:bg-green-200 transition-colors">
                                 <Wallet className="h-5 w-5 text-green-600" />
                             </div>
-                            <span className="text-sm font-medium text-gray-700">{t('staffDashboard.widgets.billing')}</span>
+                            <span className="text-sm font-medium text-text-main">{t('staffDashboard.widgets.billing')}</span>
                         </button>
                     </div>
                 </div>
 
                 {/* Today's Summary */}
                 <div className="bg-white border border-primary-100 rounded-xl shadow-soft p-6">
-                    <h3 className="text-lg font-bold text-primary-900 mb-4 flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-gradient-brand mb-4 flex items-center gap-2">
                         <Clock className="h-5 w-5 text-primary-500" />
                         {t('staffDashboard.widgets.todaySummary')}
                     </h3>
                     <div className="space-y-3">
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <span className="text-gray-600">{t('staffDashboard.widgets.completedAppointments')}</span>
+                        <div className="flex items-center justify-between p-3 bg-brand-light/30 rounded-lg">
+                            <span className="text-text-secondary">{t('staffDashboard.widgets.completedAppointments')}</span>
                             <span className="font-bold text-green-600">{staffStats.completedAppointments}</span>
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <span className="text-gray-600">{t('staffDashboard.widgets.pendingAppointments')}</span>
+                        <div className="flex items-center justify-between p-3 bg-brand-light/30 rounded-lg">
+                            <span className="text-text-secondary">{t('staffDashboard.widgets.pendingAppointments')}</span>
                             <span className="font-bold text-orange-600">{staffStats.pendingAppointments}</span>
                         </div>
-                        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                            <span className="text-gray-600">{t('staffDashboard.widgets.newPatients')}</span>
+                        <div className="flex items-center justify-between p-3 bg-brand-light/30 rounded-lg">
+                            <span className="text-text-secondary">{t('staffDashboard.widgets.newPatients')}</span>
                             <span className="font-bold text-blue-600">{staffStats.newPatientsToday}</span>
                         </div>
                     </div>
@@ -708,7 +705,7 @@ const StaffDashboard = () => {
                     <div className="px-6 pb-6 space-y-6">
                         {/* Name & Title */}
                         <div>
-                            <h2 className="text-2xl font-bold text-slate-800">{user.username}</h2>
+                            <h2 className="text-2xl font-bold text-gradient-brand">{user.username}</h2>
                             <div className="flex flex-wrap items-center gap-2 mt-2">
                                 <span className={`text-xs font-bold px-2.5 py-1 rounded-md uppercase tracking-wider ${user.role === 'admin' ? 'text-red-700 bg-red-50 border border-red-100' :
                                     user.role === 'manager' ? 'text-orange-700 bg-orange-50 border border-orange-100' :

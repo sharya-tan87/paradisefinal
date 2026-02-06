@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { X, Printer } from 'lucide-react';
+import businessConfig from '../config/business';
 
 const ViewInvoiceModal = ({ isOpen, onClose, invoice }) => {
     const printRef = useRef();
@@ -15,27 +16,27 @@ const ViewInvoiceModal = ({ isOpen, onClose, invoice }) => {
                 <title>Invoice ${invoice.invoiceNumber}</title>
                 <style>
                     * { box-sizing: border-box; margin: 0; padding: 0; }
-                    body { font-family: 'Prompt', 'Helvetica Neue', sans-serif; padding: 40px; color: #1a365d; }
+                    body { font-family: 'Prompt', 'Helvetica Neue', sans-serif; padding: 40px; color: #214491; }
                     .invoice-header { text-align: center; margin-bottom: 40px; }
-                    .invoice-header h1 { color: #0d9488; font-size: 28px; margin-bottom: 8px; }
-                    .invoice-header p { color: #64748b; font-size: 14px; }
+                    .invoice-header h1 { color: #2D7C9C; font-size: 28px; margin-bottom: 8px; }
+                    .invoice-header p { color: #214491; font-size: 14px; }
                     .invoice-details { display: flex; justify-content: space-between; margin-bottom: 40px; }
                     .invoice-details div { text-align: left; }
-                    .invoice-details h3 { font-size: 12px; color: #64748b; text-transform: uppercase; margin-bottom: 8px; }
-                    .invoice-details p { font-size: 14px; color: #1e293b; line-height: 1.6; }
+                    .invoice-details h3 { font-size: 12px; color: #2D7C9C; text-transform: uppercase; margin-bottom: 8px; }
+                    .invoice-details p { font-size: 14px; color: #214491; line-height: 1.6; }
                     table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
-                    th { background: #f1f5f9; color: #475569; font-size: 12px; text-transform: uppercase; padding: 12px; text-align: left; }
-                    td { padding: 12px; border-bottom: 1px solid #e2e8f0; font-size: 14px; }
+                    th { background: #CEE0F3; color: #214491; font-size: 12px; text-transform: uppercase; padding: 12px; text-align: left; }
+                    td { padding: 12px; border-bottom: 1px solid #CEE0F3; font-size: 14px; }
                     .totals { text-align: right; }
                     .totals div { display: flex; justify-content: flex-end; gap: 40px; margin-bottom: 8px; }
-                    .totals .total-row { font-size: 18px; font-weight: bold; color: #0d9488; border-top: 2px solid #0d9488; padding-top: 12px; }
-                    .footer { text-align: center; margin-top: 60px; color: #94a3b8; font-size: 12px; }
+                    .totals .total-row { font-size: 18px; font-weight: bold; color: #2D7C9C; border-top: 2px solid #2D7C9C; padding-top: 12px; }
+                    .footer { text-align: center; margin-top: 60px; color: #2D7C9C; font-size: 12px; }
                 </style>
             </head>
             <body>
                 ${printContent.innerHTML}
                 <div class="footer">
-                    <p>Paradise Dental Clinic • Thank you for your patronage!</p>
+                    <p>{businessConfig.clinic.name} • Thank you for your patronage!</p>
                 </div>
             </body>
             </html>
@@ -69,8 +70,8 @@ const ViewInvoiceModal = ({ isOpen, onClose, invoice }) => {
                 <div ref={printRef} className="p-8 overflow-y-auto flex-grow">
                     {/* Invoice Header */}
                     <div className="text-center mb-8">
-                        <h1 className="text-3xl font-bold text-teal-600">Paradise Dental Clinic</h1>
-                        <p className="text-gray-500 mt-1">123 Sukhumvit Rd, Bangkok 10110</p>
+                        <h1 className="text-3xl font-bold text-teal-600">{businessConfig.clinic.name}</h1>
+                        <p className="text-gray-500 mt-1">{businessConfig.clinic.address}</p>
                         <p className="text-gray-500">Tel: 02-XXX-XXXX</p>
                     </div>
 

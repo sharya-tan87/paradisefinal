@@ -8,7 +8,6 @@ import { updateUserProfile } from '../services/api';
 
 const StaffProfileModal = ({ isOpen, onClose, user, onProfileUpdate }) => {
     const { t } = useTranslation();
-    const [loading, setLoading] = useState(false);
     const [saving, setSaving] = useState(false);
     const [message, setMessage] = useState({ type: '', text: '' });
     const [showPassword, setShowPassword] = useState(false);
@@ -26,7 +25,7 @@ const StaffProfileModal = ({ isOpen, onClose, user, onProfileUpdate }) => {
         }
     });
 
-    const newPassword = watch('newPassword');
+    const _newPassword = watch('newPassword');
 
     useEffect(() => {
         if (isOpen && user) {

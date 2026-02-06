@@ -69,11 +69,11 @@ const ReportsPage = () => {
             <div className="flex flex-col h-full">
                 {/* Page Header */}
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-primary-900 flex items-center gap-3">
+                    <h1 className="text-3xl font-bold text-gradient-brand flex items-center gap-3">
                         <FileText className="text-teal-600" />
                         {t('reportsPage.title')}
                     </h1>
-                    <p className="text-gray-500 mt-1">{t('reportsPage.subtitle')}</p>
+                    <p className="text-text-secondary mt-1">{t('reportsPage.subtitle')}</p>
                 </div>
 
                 <div className="bg-white rounded-xl border border-primary-100 shadow-sm p-6 space-y-6">
@@ -96,12 +96,12 @@ const ReportsPage = () => {
                                             <report.icon className={`h-5 w-5 ${selectedReport === report.id ? 'text-teal-600' : 'text-gray-500'
                                                 }`} />
                                         </div>
-                                        <span className={`font-semibold ${selectedReport === report.id ? 'text-teal-700' : 'text-gray-900'
+                                        <span className={`font-semibold ${selectedReport === report.id ? 'text-teal-700' : 'text-text-secondary'
                                             }`}>
                                             {t(`reportsPage.types.${report.id}.name`)}
                                         </span>
                                     </div>
-                                    <p className="text-xs text-gray-500">{t(`reportsPage.types.${report.id}.desc`)}</p>
+                                    <p className="text-xs text-text-secondary">{t(`reportsPage.types.${report.id}.desc`)}</p>
                                 </button>
                             ))}
                         </div>
@@ -186,8 +186,8 @@ const ReportsPage = () => {
 
                 {/* Report Preview Info */}
                 <div className="mt-8 bg-primary-50 rounded-xl p-6 border border-primary-100">
-                    <h3 className="font-semibold text-primary-900 mb-2">{t('reportsPage.about')} {selectedReportName}</h3>
-                    <p className="text-gray-600 text-sm">
+                    <h3 className="font-semibold text-gradient-brand mb-2">{t('reportsPage.about')} {selectedReportName}</h3>
+                    <p className="text-text-secondary text-sm">
                         {t(`reportsPage.descriptions.${selectedReport}`)}
                     </p>
                 </div>

@@ -62,11 +62,11 @@ router.post(
     resetPassword
 );
 
-// DELETE /api/admin/users/:id/hard-delete (permanent delete)
+// DELETE /api/admin/users/:id/hard-delete (permanent delete - ADMIN ONLY)
 router.delete(
     '/users/:id/hard-delete',
     authenticate,
-    authorizeRole(['admin', 'manager', 'staff']),
+    authorizeRole(['admin']),
     deleteUser
 );
 

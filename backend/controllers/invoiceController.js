@@ -1,5 +1,7 @@
 const { Invoice, Patient, Treatment, User } = require('../models');
 const { Op } = require('sequelize');
+const logger = require('../utils/logger');
+const { tax } = require('../config/business');
 
 exports.listInvoices = async (req, res) => {
     try {
@@ -50,7 +52,7 @@ exports.listInvoices = async (req, res) => {
 
         res.json(invoices);
     } catch (error) {
-        console.error('Error fetching invoices:', error);
+        logger.error('Error fetching invoices', { error: error.message });
         res.status(500).json({ error: 'Failed to fetch invoices' });
     }
 };
@@ -80,7 +82,7 @@ exports.getInvoice = async (req, res) => {
 
         res.json(invoice);
     } catch (error) {
-        console.error('Error fetching invoice:', error);
+        logger.error('Error fetching invoice', { error: error.message });
         res.status(500).json({ error: 'Failed to fetch invoice' });
     }
 };
@@ -120,8 +122,8 @@ exports.createInvoice = async (req, res) => {
         const discountAmount = parseFloat(discount) || 0;
         const afterDiscount = Math.max(0, subtotal - discountAmount);
 
-        const isVatIncluded = vatIncluded !== undefined ? vatIncluded : true;
-        const taxAmount = isVatIncluded ? afterDiscount * 0.07 : 0;
+        const isVatIncluded = vatIncluded !== undefined ? vatIncluded : tax.vatIncludedByDefault;
+        const taxAmount = isVatIncluded ? afterDiscount * tax.vatRate : 0;
 
         const totalAmount = afterDiscount + taxAmount;
 
@@ -146,7 +148,7 @@ exports.createInvoice = async (req, res) => {
 
         res.status(201).json(invoice);
     } catch (error) {
-        console.error('Error creating invoice:', error);
+        logger.error('Error creating invoice', { error: error.message });
         res.status(500).json({ error: 'Failed to create invoice' });
     }
 };
@@ -179,7 +181,7 @@ exports.recordPayment = async (req, res) => {
 
         res.json(invoice);
     } catch (error) {
-        console.error('Error recording payment:', error);
+        logger.error('Error recording payment', { error: error.message });
         res.status(500).json({ error: 'Failed to record payment' });
     }
 };

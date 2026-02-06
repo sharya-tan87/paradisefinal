@@ -85,8 +85,8 @@ const QueueDashboard = () => {
         <DashboardLayout title={t('queueDashboard.title')}>
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h1 className="text-2xl sm:text-3xl font-bold text-primary-900">{t('queueDashboard.header')}</h1>
-                    <p className="text-gray-500 mt-1">{t('queueDashboard.subtitle')}</p>
+                    <h1 className="text-2xl sm:text-3xl font-bold text-gradient-brand">{t('queueDashboard.header')}</h1>
+                    <p className="text-text-secondary mt-1">{t('queueDashboard.subtitle')}</p>
                 </div>
                 <div className="flex items-center gap-3">
                     <div className="flex items-center gap-2 bg-white p-1 rounded-lg border border-primary-100 shadow-sm">
@@ -97,7 +97,7 @@ const QueueDashboard = () => {
                                 setStatusFilter(e.target.value);
                                 setPage(1);
                             }}
-                            className="border-none bg-transparent text-sm focus:ring-0 text-primary-900 font-medium py-1 px-2 outline-none"
+                            className="border-none bg-transparent text-sm focus:ring-0 text-text-secondary font-medium py-1 px-2 outline-none"
                         >
                             <option value="">{t('queueDashboard.filter.all')}</option>
                             <option value="pending">{t('queueDashboard.filter.pending')}</option>
@@ -155,25 +155,25 @@ const QueueDashboard = () => {
                                     ) : (
                                         requests.map((req) => (
                                             <tr key={req.id} className="hover:bg-gray-50 transition-colors">
-                                                <td className="px-6 py-4 text-sm font-medium text-primary-900">
+                                                <td className="px-6 py-4 text-sm font-medium text-text-secondary">
                                                     {req.requestId}
                                                 </td>
-                                                <td className="px-6 py-4 text-sm text-gray-700">
+                                                <td className="px-6 py-4 text-sm text-text-secondary">
                                                     {req.name}
                                                 </td>
-                                                <td className="px-6 py-4 text-sm text-gray-500">
+                                                <td className="px-6 py-4 text-sm text-text-secondary">
                                                     <div className="flex flex-col">
                                                         <span>{req.phone}</span>
-                                                        <span className="text-xs text-gray-400">{req.email}</span>
+                                                        <span className="text-xs text-text-secondary">{req.email}</span>
                                                     </div>
                                                 </td>
-                                                <td className="px-6 py-4 text-sm text-gray-700">
+                                                <td className="px-6 py-4 text-sm text-text-secondary">
                                                     <div className="flex flex-col">
                                                         <span>{new Date(req.preferredDate).toLocaleDateString()}</span>
-                                                        <span className="text-xs text-gray-400">{req.preferredTime}</span>
+                                                        <span className="text-xs text-text-secondary">{req.preferredTime}</span>
                                                     </div>
                                                 </td>
-                                                <td className="px-6 py-4 text-sm text-gray-700">
+                                                <td className="px-6 py-4 text-sm text-text-secondary">
                                                     {req.serviceType}
                                                 </td>
                                                 <td className="px-6 py-4 text-sm">
@@ -250,12 +250,12 @@ const QueueDashboard = () => {
                                             <span className="text-xs font-bold text-primary-500 bg-primary-50 px-2 py-0.5 rounded-full mb-2 inline-block">
                                                 {req.requestId}
                                             </span>
-                                            <h3 className="font-bold text-gray-900">{req.name}</h3>
+                                            <h3 className="font-bold text-gradient-brand">{req.name}</h3>
                                         </div>
                                         <StatusBadge status={req.status} />
                                     </div>
 
-                                    <div className="space-y-2 mb-4 text-sm text-gray-600">
+                                    <div className="space-y-2 mb-4 text-sm text-text-secondary">
                                         <div className="flex items-center gap-2">
                                             <Calendar className="w-4 h-4 text-gray-400" />
                                             <span>{new Date(req.preferredDate).toLocaleDateString()} at {req.preferredTime}</span>
@@ -313,7 +313,7 @@ const QueueDashboard = () => {
                             >
                                 <ChevronLeft size={20} />
                             </button>
-                            <span className="text-sm font-medium text-gray-700">
+                            <span className="text-sm font-medium text-text-secondary">
                                 {t('queueDashboard.pagination', { page: page, total: totalPages })}
                             </span>
                             <button

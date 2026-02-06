@@ -49,7 +49,7 @@ const ExpensesPage = () => {
             if (expenseFilters.endDate) params.endDate = expenseFilters.endDate;
             const res = await getExpenses(params);
             setExpenses(res || []);
-        } catch (error) {
+        } catch {
             showMessage('error', 'Failed to load expenses');
         } finally {
             setLoading(false);
@@ -69,7 +69,7 @@ const ExpensesPage = () => {
                 data = data.filter(item => item.itemName.toLowerCase().includes(searchLower));
             }
             setInventory(data);
-        } catch (error) {
+        } catch {
             showMessage('error', 'Failed to load inventory');
         } finally {
             setLoading(false);
@@ -109,7 +109,7 @@ const ExpensesPage = () => {
             }
             setExpenseModal({ open: false, data: null });
             fetchExpenses();
-        } catch (error) {
+        } catch {
             showMessage('error', 'Failed to save expense');
         } finally {
             setIsSaving(false);
@@ -122,7 +122,7 @@ const ExpensesPage = () => {
             await deleteExpense(id);
             showMessage('success', 'Expense deleted');
             fetchExpenses();
-        } catch (error) {
+        } catch {
             showMessage('error', 'Failed to delete expense');
         }
     };
@@ -140,7 +140,7 @@ const ExpensesPage = () => {
             }
             setInventoryModal({ open: false, data: null });
             fetchInventory();
-        } catch (error) {
+        } catch {
             showMessage('error', 'Failed to save item');
         } finally {
             setIsSaving(false);
@@ -153,7 +153,7 @@ const ExpensesPage = () => {
             await deleteInventoryItem(id);
             showMessage('success', 'Item deleted');
             fetchInventory();
-        } catch (error) {
+        } catch {
             showMessage('error', 'Failed to delete item');
         }
     };
@@ -166,11 +166,11 @@ const ExpensesPage = () => {
                 {/* Page Header */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-primary-900 flex items-center gap-3">
+                        <h1 className="text-3xl font-bold text-gradient-brand flex items-center gap-3">
                             {activeTab === 'expenses' ? <DollarSign className="text-teal-600" /> : <Package className="text-teal-600" />}
                             {t('expenseInventory.title')}
                         </h1>
-                        <p className="text-gray-500 mt-1">{t('expenseInventory.subtitle')}</p>
+                        <p className="text-text-secondary mt-1">{t('expenseInventory.subtitle')}</p>
                     </div>
                 </div>
 
@@ -210,7 +210,7 @@ const ExpensesPage = () => {
                         <div className="bg-white p-4 rounded-xl border border-primary-100 shadow-sm mb-6 flex flex-col md:flex-row gap-4 justify-between items-end">
                             <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
                                 <div className="flex flex-col gap-1">
-                                    <label className="text-xs font-semibold text-gray-500">{t('expenseInventory.filters.category')}</label>
+                                    <label className="text-xs font-semibold text-text-secondary">{t('expenseInventory.filters.category')}</label>
                                     <select
                                         value={expenseFilters.category}
                                         onChange={(e) => setExpenseFilters(prev => ({ ...prev, category: e.target.value }))}
@@ -221,7 +221,7 @@ const ExpensesPage = () => {
                                     </select>
                                 </div>
                                 <div className="flex flex-col gap-1">
-                                    <label className="text-xs font-semibold text-gray-500">{t('expenseInventory.filters.startDate')}</label>
+                                    <label className="text-xs font-semibold text-text-secondary">{t('expenseInventory.filters.startDate')}</label>
                                     <input
                                         type="date"
                                         value={expenseFilters.startDate}
@@ -230,7 +230,7 @@ const ExpensesPage = () => {
                                     />
                                 </div>
                                 <div className="flex flex-col gap-1">
-                                    <label className="text-xs font-semibold text-gray-500">{t('expenseInventory.filters.endDate')}</label>
+                                    <label className="text-xs font-semibold text-text-secondary">{t('expenseInventory.filters.endDate')}</label>
                                     <input
                                         type="date"
                                         value={expenseFilters.endDate}
@@ -251,8 +251,8 @@ const ExpensesPage = () => {
                         {/* Totals */}
                         <div className="mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div className="bg-white p-5 rounded-xl shadow-sm border border-primary-100">
-                                <p className="text-gray-500 text-sm font-medium">{t('expenseInventory.totalExpenses')}</p>
-                                <h3 className="text-2xl font-bold text-gray-900 mt-1">฿{totalExpenses.toLocaleString(undefined, { minimumFractionDigits: 2 })}</h3>
+                                <p className="text-text-secondary text-sm font-medium">{t('expenseInventory.totalExpenses')}</p>
+                                <h3 className="text-2xl font-bold text-brand-dark mt-1">฿{totalExpenses.toLocaleString(undefined, { minimumFractionDigits: 2 })}</h3>
                             </div>
                         </div>
 
@@ -277,13 +277,13 @@ const ExpensesPage = () => {
                                     ) : (
                                         expenses.map(exp => (
                                             <tr key={exp.id} className="hover:bg-gray-50 transition-colors">
-                                                <td className="px-6 py-4 text-sm text-gray-900">{exp.expenseDate}</td>
-                                                <td className="px-6 py-4 text-sm text-gray-900">
+                                                <td className="px-6 py-4 text-sm text-text-secondary">{exp.expenseDate}</td>
+                                                <td className="px-6 py-4 text-sm text-text-secondary">
                                                     <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs font-semibold">{exp.category}</span>
                                                 </td>
-                                                <td className="px-6 py-4 text-sm text-gray-600 max-w-xs truncate">{exp.description}</td>
-                                                <td className="px-6 py-4 text-sm text-gray-600">{exp.vendor || '-'}</td>
-                                                <td className="px-6 py-4 text-sm font-semibold text-gray-900 text-right">฿{parseFloat(exp.amount).toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
+                                                <td className="px-6 py-4 text-sm text-text-secondary max-w-xs truncate">{exp.description}</td>
+                                                <td className="px-6 py-4 text-sm text-text-secondary">{exp.vendor || '-'}</td>
+                                                <td className="px-6 py-4 text-sm font-semibold text-text-secondary text-right">฿{parseFloat(exp.amount).toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
                                                 <td className="px-6 py-4 text-right">
                                                     <div className="flex items-center justify-end gap-2">
                                                         <button onClick={() => setExpenseModal({ open: true, data: exp })} className="text-blue-600 hover:text-blue-800 p-1"><Edit size={16} /></button>
@@ -321,7 +321,7 @@ const ExpensesPage = () => {
                                         onChange={(e) => setLowStockFilter(e.target.checked)}
                                         className="w-4 h-4 text-teal-600 rounded focus:ring-teal-500 border-gray-300"
                                     />
-                                    <span className="text-sm font-medium text-gray-700">{t('expenseInventory.filters.lowStock')}</span>
+                                    <span className="text-sm font-medium text-text-secondary">{t('expenseInventory.filters.lowStock')}</span>
                                 </label>
                             </div>
                             <button
@@ -355,16 +355,16 @@ const ExpensesPage = () => {
                                             const isLow = item.quantity <= item.reorderLevel;
                                             return (
                                                 <tr key={item.id} className={`hover:bg-gray-50 transition-colors ${isLow ? 'bg-amber-50' : ''}`}>
-                                                    <td className="px-6 py-4 text-sm font-medium text-gray-900 flex items-center gap-2">
+                                                    <td className="px-6 py-4 text-sm font-medium text-text-secondary flex items-center gap-2">
                                                         {item.itemName}
                                                         {isLow && <AlertCircle size={14} className="text-amber-500" title="Low Stock" />}
                                                     </td>
-                                                    <td className={`px-6 py-4 text-sm font-bold ${isLow ? 'text-amber-600' : 'text-gray-700'}`}>
+                                                    <td className={`px-6 py-4 text-sm font-bold ${isLow ? 'text-amber-600' : 'text-text-secondary'}`}>
                                                         {item.quantity}
                                                     </td>
-                                                    <td className="px-6 py-4 text-sm text-gray-600">{item.reorderLevel}</td>
-                                                    <td className="px-6 py-4 text-sm text-gray-600">{item.supplier || '-'}</td>
-                                                    <td className="px-6 py-4 text-sm font-semibold text-gray-900 text-right">฿{parseFloat(item.unitCost).toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
+                                                    <td className="px-6 py-4 text-sm text-text-secondary">{item.reorderLevel}</td>
+                                                    <td className="px-6 py-4 text-sm text-text-secondary">{item.supplier || '-'}</td>
+                                                    <td className="px-6 py-4 text-sm font-semibold text-text-secondary text-right">฿{parseFloat(item.unitCost).toLocaleString(undefined, { minimumFractionDigits: 2 })}</td>
                                                     <td className="px-6 py-4 text-right">
                                                         <div className="flex items-center justify-end gap-2">
                                                             <button onClick={() => setInventoryModal({ open: true, data: item })} className="text-blue-600 hover:text-blue-800 p-1"><Edit size={16} /></button>

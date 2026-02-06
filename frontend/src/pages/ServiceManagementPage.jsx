@@ -147,11 +147,11 @@ const ServiceManagementPage = () => {
             {/* Page Header */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                 <div>
-                    <h1 className="text-3xl font-bold text-primary-900 flex items-center gap-3">
+                    <h1 className="text-3xl font-bold text-gradient-brand flex items-center gap-3">
                         <Stethoscope className="text-teal-600" />
                         {t('serviceManagement.title')}
                     </h1>
-                    <p className="text-gray-500 mt-1">{t('serviceManagement.subtitle')}</p>
+                    <p className="text-text-secondary mt-1">{t('serviceManagement.subtitle')}</p>
                 </div>
                 <button
                     onClick={handleOpenCreateModal}
@@ -211,8 +211,8 @@ const ServiceManagementPage = () => {
             ) : services.length === 0 ? (
                 <div className="bg-white rounded-xl border border-dashed border-gray-300 p-12 text-center">
                     <Stethoscope className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                    <h3 className="text-lg font-medium text-gray-900">{t('serviceManagement.noServices')}</h3>
-                    <p className="text-gray-500 mt-1">{t('serviceManagement.noServicesDesc')}</p>
+                    <h3 className="text-lg font-medium text-gradient-brand">{t('serviceManagement.noServices')}</h3>
+                    <p className="text-text-secondary mt-1">{t('serviceManagement.noServicesDesc')}</p>
                 </div>
             ) : (
                 <>
@@ -233,11 +233,11 @@ const ServiceManagementPage = () => {
                                 {services.map((service) => (
                                     <tr key={service.id} className="hover:bg-gray-50 transition-colors group">
                                         <td className="px-6 py-4">
-                                            <div className="font-medium text-gray-900">
+                                            <div className="font-medium text-text-secondary">
                                                 {i18n.language === 'th' && service.nameTh ? service.nameTh : service.name}
                                             </div>
                                             {service.description && (
-                                                <div className="text-sm text-gray-500 truncate max-w-xs">
+                                                <div className="text-sm text-text-secondary truncate max-w-xs">
                                                     {i18n.language === 'th' && service.descriptionTh ? service.descriptionTh : service.description}
                                                 </div>
                                             )}
@@ -247,10 +247,10 @@ const ServiceManagementPage = () => {
                                                 {t(`serviceManagement.category.${service.category}`)}
                                             </span>
                                         </td>
-                                        <td className="px-6 py-4 text-gray-600 font-medium">
+                                        <td className="px-6 py-4 text-text-secondary font-medium">
                                             {formatPrice(service.basePrice)}
                                         </td>
-                                        <td className="px-6 py-4 text-gray-600">
+                                        <td className="px-6 py-4 text-text-secondary">
                                             <span className="flex items-center gap-1">
                                                 <Clock size={14} />
                                                 {service.duration} {t('serviceManagement.minutes')}
@@ -301,10 +301,10 @@ const ServiceManagementPage = () => {
                             <div key={service.id} className="bg-white p-5 rounded-xl shadow-sm border border-primary-100">
                                 <div className="flex justify-between items-start mb-3">
                                     <div>
-                                        <h3 className="font-bold text-gray-900">
+                                        <h3 className="font-bold text-gradient-brand">
                                             {i18n.language === 'th' && service.nameTh ? service.nameTh : service.name}
                                         </h3>
-                                        <p className="text-sm text-gray-500">{formatPrice(service.basePrice)}</p>
+                                        <p className="text-sm text-text-secondary">{formatPrice(service.basePrice)}</p>
                                     </div>
                                     <span className={`px-2 py-1 rounded-full text-xs font-bold uppercase ${getCategoryBadgeClass(service.category)}`}>
                                         {t(`serviceManagement.category.${service.category}`)}
@@ -453,7 +453,7 @@ const ServiceFormModal = ({ isOpen, onClose, onSubmit, initialData, isLoading })
                         <div className="bg-teal-50 p-2 rounded-lg">
                             <Stethoscope className="text-teal-600" size={24} />
                         </div>
-                        <h2 className="text-xl font-bold text-primary-900">
+                        <h2 className="text-xl font-bold text-gradient-brand">
                             {isEditMode ? t('serviceManagement.modal.editTitle') : t('serviceManagement.modal.createTitle')}
                         </h2>
                     </div>
@@ -467,7 +467,7 @@ const ServiceFormModal = ({ isOpen, onClose, onSubmit, initialData, isLoading })
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {/* Name (English) */}
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                            <label className="block text-sm font-semibold text-text-secondary mb-2">
                                 {t('serviceManagement.form.name')} *
                             </label>
                             <input
@@ -483,7 +483,7 @@ const ServiceFormModal = ({ isOpen, onClose, onSubmit, initialData, isLoading })
 
                         {/* Name (Thai) */}
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                            <label className="block text-sm font-semibold text-text-secondary mb-2">
                                 {t('serviceManagement.form.nameTh')}
                             </label>
                             <input
@@ -530,7 +530,7 @@ const ServiceFormModal = ({ isOpen, onClose, onSubmit, initialData, isLoading })
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         {/* Category */}
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                            <label className="block text-sm font-semibold text-text-secondary mb-2">
                                 {t('serviceManagement.form.category')} *
                             </label>
                             <select
@@ -548,7 +548,7 @@ const ServiceFormModal = ({ isOpen, onClose, onSubmit, initialData, isLoading })
 
                         {/* Base Price */}
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                            <label className="block text-sm font-semibold text-text-secondary mb-2">
                                 {t('serviceManagement.form.basePrice')}
                             </label>
                             <div className="relative">
@@ -568,7 +568,7 @@ const ServiceFormModal = ({ isOpen, onClose, onSubmit, initialData, isLoading })
 
                         {/* Duration */}
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                            <label className="block text-sm font-semibold text-text-secondary mb-2">
                                 {t('serviceManagement.form.duration')}
                             </label>
                             <div className="relative">
@@ -584,14 +584,14 @@ const ServiceFormModal = ({ isOpen, onClose, onSubmit, initialData, isLoading })
                                     placeholder="30"
                                 />
                             </div>
-                            <span className="text-xs text-gray-500 mt-1">{t('serviceManagement.minutes')}</span>
+                            <span className="text-xs text-text-secondary mt-1">{t('serviceManagement.minutes')}</span>
                         </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {/* Sort Order */}
                         <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">
+                            <label className="block text-sm font-semibold text-text-secondary mb-2">
                                 {t('serviceManagement.form.sortOrder')}
                             </label>
                             <input

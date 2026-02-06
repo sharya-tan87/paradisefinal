@@ -18,7 +18,7 @@ const TreatmentFormModal = ({ isOpen, onClose, onSubmit, initialData, patient, i
         }
     });
 
-    const [selectedProcedures, setSelectedProcedures] = useState([]);
+    const [_selectedProcedures, _setSelectedProcedures] = useState([]);
 
     useEffect(() => {
         if (isOpen) {

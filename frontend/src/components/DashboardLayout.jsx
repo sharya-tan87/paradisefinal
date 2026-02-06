@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import Footer from './Footer';
 
-const DashboardLayout = ({ children, title, actions }) => {
+const DashboardLayout = ({ children, title }) => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const location = useLocation();
@@ -101,11 +101,11 @@ const DashboardLayout = ({ children, title, actions }) => {
                                             } ${item.comingSoon ? 'opacity-60 cursor-not-allowed' : ''}`}
                                     >
                                         <div className="flex items-center gap-3">
-                                            <item.icon className={`h-5 w-5 ${isActive ? 'text-primary-600' : (item.comingSoon ? 'text-gray-400' : 'text-primary-500')}`} />
+                                            <item.icon className={`h-5 w-5 ${isActive ? 'text-primary-600' : (item.comingSoon ? 'text-text-secondary' : 'text-primary-500')}`} />
                                             <span>{item.label}</span>
                                         </div>
                                         {item.comingSoon && (
-                                            <span className="text-[10px] bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full font-bold">{t('staffDashboard.nav.soon')}</span>
+                                            <span className="text-[10px] bg-brand-light text-text-secondary px-2 py-0.5 rounded-full font-bold">{t('staffDashboard.nav.soon')}</span>
                                         )}
                                     </div>
                                 );
@@ -141,7 +141,7 @@ const DashboardLayout = ({ children, title, actions }) => {
                                             } cursor-pointer`}
                                     >
                                         <div className="flex items-center gap-3">
-                                            <item.icon className={`h-5 w-5 ${item.comingSoon ? 'text-gray-400' : 'text-primary-500'}`} />
+                                            <item.icon className={`h-5 w-5 ${item.comingSoon ? 'text-text-secondary' : 'text-primary-500'}`} />
                                             <span>{item.label}</span>
                                         </div>
                                         {item.comingSoon && (
@@ -155,7 +155,7 @@ const DashboardLayout = ({ children, title, actions }) => {
                 )}
 
                 {/* Main Content */}
-                <main className="flex-grow p-4 sm:p-6 lg:p-8 bg-gray-50/30 max-w-7xl mx-auto w-full md:w-[calc(100%-16rem)]">
+                <main className="flex-grow p-4 sm:p-6 lg:p-8 bg-white max-w-7xl mx-auto w-full md:w-[calc(100%-16rem)]">
                     {/* Mobile Toggle Button */}
                     <div className="md:hidden mb-6 flex items-center justify-between">
                         <h1 className="text-2xl font-bold text-primary-900">{title || t('staffDashboard.nav.dashboard')}</h1>

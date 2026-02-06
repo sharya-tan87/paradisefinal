@@ -247,7 +247,7 @@ const TreatmentChartingPage = () => {
     return (
         <DashboardLayout title={t('treatmentCharting.title')}>
             <div className="flex flex-col h-full">
-                <h1 className="text-3xl font-bold text-primary-900 mb-6 flex items-center gap-3">
+                <h1 className="text-3xl font-bold text-gradient-brand mb-6 flex items-center gap-3">
                     <Stethoscope className="text-teal-600" />
                     {t('treatmentCharting.title')}
                 </h1>
@@ -339,7 +339,7 @@ const TreatmentChartingPage = () => {
                 {/* Search Section */}
                 <div className="bg-white p-6 rounded-xl border border-primary-100 shadow-sm mb-6">
                     <div className="max-w-xl mx-auto">
-                        <label className="block text-sm font-medium text-gray-700 mb-2 text-center">{t('treatmentCharting.selectPatient')}</label>
+                        <label className="block text-sm font-medium text-text-secondary mb-2 text-center">{t('treatmentCharting.selectPatient')}</label>
                         <form onSubmit={handleSearch} className="relative flex gap-2">
                             <input
                                 type="text"
@@ -367,8 +367,8 @@ const TreatmentChartingPage = () => {
                                         className="p-4 border-b border-gray-50 hover:bg-teal-50 cursor-pointer flex justify-between items-center transition-colors"
                                     >
                                         <div>
-                                            <p className="font-bold text-primary-900">{p.firstName} {p.lastName}</p>
-                                            <p className="text-sm text-gray-500">{p.hn} • {p.phone}</p>
+                                            <p className="font-bold text-brand-dark">{p.firstName} {p.lastName}</p>
+                                            <p className="text-sm text-text-secondary">{p.hn} • {p.phone}</p>
                                         </div>
                                         <ChevronRight className="text-gray-400" />
                                     </div>
@@ -393,17 +393,17 @@ const TreatmentChartingPage = () => {
                                         <User className="h-8 w-8 text-primary-600" />
                                     </div>
                                     <div>
-                                        <h2 className="text-xl font-bold text-primary-900">{selectedPatient.firstName} {selectedPatient.lastName}</h2>
-                                        <div className="flex flex-wrap gap-x-6 gap-y-1 mt-1 text-sm text-gray-600">
+                                        <h2 className="text-xl font-bold text-gradient-brand">{selectedPatient.firstName} {selectedPatient.lastName}</h2>
+                                        <div className="flex flex-wrap gap-x-6 gap-y-1 mt-1 text-sm text-text-secondary">
                                             <span className="font-medium bg-gray-100 px-2 rounded">{selectedPatient.hn}</span>
                                             <span>Age: {selectedPatient.dateOfBirth ? (new Date().getFullYear() - new Date(selectedPatient.dateOfBirth).getFullYear()) : 'N/A'}</span>
                                             <span>Gender: {selectedPatient.gender || '-'}</span>
                                             <span>Phone: {selectedPatient.phone}</span>
                                         </div>
-                                        <div className="mt-3 text-sm text-gray-500 max-w-lg">
-                                            <span className="font-semibold text-gray-700">{t('treatmentCharting.medicalHistory')}:</span> {selectedPatient.medicalHistory || 'None'}
+                                        <div className="mt-3 text-sm text-text-secondary max-w-lg">
+                                            <span className="font-semibold text-text-secondary">{t('treatmentCharting.medicalHistory')}:</span> {selectedPatient.medicalHistory || 'None'}
                                             <br />
-                                            <span className="font-semibold text-gray-700">{t('treatmentCharting.allergies')}:</span> <span className="text-red-600">{selectedPatient.allergies || 'None'}</span>
+                                            <span className="font-semibold text-text-secondary">{t('treatmentCharting.allergies')}:</span> <span className="text-red-600">{selectedPatient.allergies || 'None'}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -441,7 +441,7 @@ const TreatmentChartingPage = () => {
                         {/* Treatment History List */}
                         <div className="bg-white rounded-xl shadow-sm border border-primary-100 overflow-hidden">
                             <div className="p-6 border-b border-gray-100">
-                                <h3 className="text-lg font-bold text-gray-900">{t('treatmentCharting.history')}</h3>
+                                <h3 className="text-lg font-bold text-gradient-brand">{t('treatmentCharting.history')}</h3>
                             </div>
 
                             {isLoadingTreatments ? (
@@ -468,19 +468,19 @@ const TreatmentChartingPage = () => {
                                         <tbody className="divide-y divide-gray-100">
                                             {treatments.map(treatment => (
                                                 <tr key={treatment.id} className="hover:bg-gray-50 transition-colors">
-                                                    <td className="px-6 py-4 text-sm text-gray-900 whitespace-nowrap">
+                                                    <td className="px-6 py-4 text-sm text-text-secondary whitespace-nowrap">
                                                         {new Date(treatment.treatmentDate).toLocaleDateString()}
                                                     </td>
-                                                    <td className="px-6 py-4 text-sm text-gray-700 max-w-xs truncate">
+                                                    <td className="px-6 py-4 text-sm text-text-secondary max-w-xs truncate">
                                                         {treatment.procedureCodes && treatment.procedureCodes.map(code => {
                                                             const p = PROCEDURE_CODES.find(pc => pc.code === code);
                                                             return <span key={code} className="inline-block bg-gray-100 px-2 py-0.5 rounded text-xs mr-1 mb-1">{p ? p.label : code}</span>
                                                         })}
                                                     </td>
-                                                    <td className="px-6 py-4 text-sm text-gray-600">
+                                                    <td className="px-6 py-4 text-sm text-text-secondary">
                                                         {treatment.toothNumbers && treatment.toothNumbers.length > 0 ? treatment.toothNumbers.join(', ') : '-'}
                                                     </td>
-                                                    <td className="px-6 py-4 text-sm text-gray-600">
+                                                    <td className="px-6 py-4 text-sm text-text-secondary">
                                                         Dr. {treatment.dentist ? treatment.dentist.lastName : 'Unknown'}
                                                     </td>
                                                     <td className="px-6 py-4">
@@ -492,7 +492,7 @@ const TreatmentChartingPage = () => {
                                                         </span>
                                                     </td>
                                                     {!isDentist && (
-                                                        <td className="px-6 py-4 text-right text-sm font-medium text-gray-900">
+                                                        <td className="px-6 py-4 text-right text-sm font-medium text-text-secondary">
                                                             ฿{parseFloat(treatment.estimatedCost).toLocaleString()}
                                                         </td>
                                                     )}
@@ -523,8 +523,8 @@ const TreatmentChartingPage = () => {
                 ) : (
                     <div className="flex flex-col items-center justify-center py-20 bg-white rounded-xl border border-dashed border-primary-200">
                         <User className="h-16 w-16 text-primary-200 mb-4" />
-                        <h3 className="text-lg font-medium text-primary-800">{t('treatmentCharting.noPatientSelected')}</h3>
-                        <p className="text-gray-500 max-w-sm text-center mt-2">
+                        <h3 className="text-lg font-medium text-brand-dark">{t('treatmentCharting.noPatientSelected')}</h3>
+                        <p className="text-text-secondary max-w-sm text-center mt-2">
                             {t('treatmentCharting.noPatientDesc')}
                         </p>
                     </div>

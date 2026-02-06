@@ -39,8 +39,9 @@
     },
     "hero": {
         "tagline": "A New Standard in Dental Care",
-        "title_part1": "Your Smile is Our",
-        "title_part2": "Priority",
+        "title_part1": "Your Smile",
+        "title_part2": "is Our",
+        "title_part3": "Priority",
         "description": "Experience exceptional dental care in a modern, comfortable environment. Our expert team is dedicated to providing you with the highest quality service.",
         "cta_primary": "Book Appointment",
         "cta_secondary": "Consult via Line",
@@ -64,7 +65,8 @@
         "hero": {
             "tagline": "Our Story",
             "title_part1": "About",
-            "title_part2": "Paradise Dental",
+            "title_part2": "Paradise",
+            "title_part3": "Dental Clinic",
             "description": "Dedicated to providing exceptional dental care in a comfortable, friendly, and modern environment since 2010.",
             "cta_primary": "Our Mission",
             "cta_secondary": "Meet The Team",
@@ -120,6 +122,36 @@
                 "name": "David Thompson",
                 "role": "Orthodontist",
                 "bio": "Dedicated to creating perfectly aligned smiles with traditional braces and clear aligners."
+            }
+        },
+        "vision": {
+            "label": "Vision",
+            "title": "More than a dental clinic... It's a place of comfort",
+            "subtitle": "Welcome to Paradise Dental Clinic, where your smile is our mission.",
+            "description": "\"We understand that many people 'fear' visiting the dentist... Paradise Dental Clinic was born from the intention to dissolve those fears. We created a clinic atmosphere that is clean, comfortable, and relaxing like a café, so you and your family can feel 'at ease' from the first step you take inside, with care that pays attention to every detail, just like family caring for each other.\"",
+            "pillar1": "At Paradise Dental Clinic, our mission is to provide world-class dental services that are friendly, believing that a healthy smile is the gateway to a better quality of life.",
+            "pillar2": "We strive to be leaders in dental innovation while maintaining the personalized care that makes our patients feel like family.",
+            "pillar3": "We provide healthcare services in both Thai and English, striving to make quality and comfortable dental care accessible to everyone."
+        },
+        "standards": {
+            "title": "Our Standards",
+            "subtitle": "The principles that guide our care every day",
+            "sterilization": {
+                "title": "Sterilization",
+                "desc": "Hospital-grade sterilization system, clean and 100% safe."
+            },
+            "technology": {
+                "title": "Technology",
+                "desc": "Modern tools and digital X-rays help plan treatment accurately."
+            },
+            "service": {
+                "title": "Service",
+                "desc": "Straightforward consultation, no hidden costs, clear pricing before treatment."
+            },
+            "cta": {
+                "title": "Ready to turn fear into confidence?",
+                "subtitle": "Book a dental check-up with us. Start your journey to a bright and confident smile.",
+                "button": "Book Consultation"
             }
         }
     },
@@ -243,7 +275,13 @@
                 "text": "Excellent service, no waiting. Clean, friendly. Already recommended to many friends.",
                 "rating": 5
             }
-        }
+        },
+        "realWork": "Real treatment results from our patients",
+        "before": "Before Treatment",
+        "after": "After Treatment",
+        "nextPerson": "Be the Next One?",
+        "shareExperience": "Share your experience with us",
+        "bookQueue": "Book Queue Now"
     },
     "contact": {
         "hero": {
@@ -734,7 +772,9 @@
         "cancel": "Cancel",
         "save": "Save",
         "checkIn": "Check In",
-        "print": "Print"
+        "print": "Print",
+        "bookNow": "Book Now",
+        "bookConsult": "Book Consultation Now"
     },
     "receipt": {
         "detailsTitle": "Receipt Details"

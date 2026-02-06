@@ -11,12 +11,12 @@ import { useTranslation } from 'react-i18next';
 import DashboardLayout from '../components/DashboardLayout';
 import { getDashboardAnalytics } from '../services/api';
 
-// Brand Colors
+// Brand Colors - Three-color system ONLY
 const BRAND_COLORS = {
     lightBlue: '#CEE0F3',
     tealBlue: '#2D7C9C',
     deepNavy: '#214491',
-    gray: '#9CA3AF'
+    // No gray - use deepNavy with opacity for muted states
 };
 
 const STATUS_COLORS = {
@@ -24,27 +24,27 @@ const STATUS_COLORS = {
     confirmed: BRAND_COLORS.lightBlue,
     completed: BRAND_COLORS.tealBlue,
     cancelled: BRAND_COLORS.deepNavy,
-    'no-show': BRAND_COLORS.gray,
+    'no-show': 'rgba(33, 68, 145, 0.5)', // deepNavy at 50% opacity
     'in-progress': BRAND_COLORS.tealBlue
 };
 
-// KPI Card Component
+// KPI Card Component - Brand compliant
 const KPICard = ({ title, value, icon: Icon, loading }) => (
-    <div className="bg-white p-6 rounded-xl border border-primary-100 shadow-sm">
+    <div className="bg-white p-6 rounded-xl border border-brand-light shadow-soft">
         {loading ? (
             <div className="animate-pulse">
-                <div className="h-4 bg-gray-200 rounded w-1/2 mb-3"></div>
-                <div className="h-8 bg-gray-200 rounded w-3/4"></div>
+                <div className="h-4 bg-brand-light rounded w-1/2 mb-3"></div>
+                <div className="h-8 bg-brand-light rounded w-3/4"></div>
             </div>
         ) : (
             <>
                 <div className="flex items-center gap-3 mb-2">
-                    <div className="bg-teal-50 p-2 rounded-lg">
-                        <Icon className="h-5 w-5 text-teal-600" />
+                    <div className="bg-brand-light p-2 rounded-lg">
+                        <Icon className="h-5 w-5 text-brand" />
                     </div>
-                    <span className="text-gray-500 text-sm font-medium">{title}</span>
+                    <span className="text-brand-dark/70 text-sm font-medium">{title}</span>
                 </div>
-                <p className="text-3xl font-bold text-primary-900">{value}</p>
+                <p className="text-3xl font-bold text-brand-dark">{value}</p>
             </>
         )}
     </div>
@@ -86,11 +86,11 @@ const AnalyticsDashboard = () => {
                 {/* Page Header */}
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                     <div>
-                        <h1 className="text-3xl font-bold text-primary-900 flex items-center gap-3">
+                        <h1 className="text-3xl font-bold text-gradient-brand flex items-center gap-3">
                             <BarChart3 className="text-teal-600" />
                             {t('executiveDashboard.title')}
                         </h1>
-                        <p className="text-gray-500 mt-1">{t('executiveDashboard.subtitle')}</p>
+                        <p className="text-text-secondary mt-1">{t('executiveDashboard.subtitle')}</p>
                     </div>
                     <div className="flex items-center gap-3">
                         {/* Date Range Filter */}
@@ -154,7 +154,7 @@ const AnalyticsDashboard = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Revenue Chart */}
                     <div className="bg-white p-6 rounded-xl border border-primary-100 shadow-sm">
-                        <h3 className="text-lg font-bold text-primary-900 mb-4">{t('executiveDashboard.charts.monthlyRevenue')}</h3>
+                        <h3 className="text-lg font-bold text-gradient-brand mb-4">{t('executiveDashboard.charts.monthlyRevenue')}</h3>
                         {loading ? (
                             <ChartSkeleton />
                         ) : (
@@ -197,7 +197,7 @@ const AnalyticsDashboard = () => {
 
                     {/* Patient Growth Chart */}
                     <div className="bg-white p-6 rounded-xl border border-primary-100 shadow-sm">
-                        <h3 className="text-lg font-bold text-primary-900 mb-4">{t('executiveDashboard.charts.newPatients')}</h3>
+                        <h3 className="text-lg font-bold text-gradient-brand mb-4">{t('executiveDashboard.charts.newPatients')}</h3>
                         {loading ? (
                             <ChartSkeleton />
                         ) : (
@@ -236,7 +236,7 @@ const AnalyticsDashboard = () => {
 
                     {/* Appointment Status Chart */}
                     <div className="bg-white p-6 rounded-xl border border-primary-100 shadow-sm lg:col-span-2">
-                        <h3 className="text-lg font-bold text-primary-900 mb-4">{t('executiveDashboard.charts.appointmentStatus')}</h3>
+                        <h3 className="text-lg font-bold text-gradient-brand mb-4">{t('executiveDashboard.charts.appointmentStatus')}</h3>
                         {loading ? (
                             <ChartSkeleton />
                         ) : (

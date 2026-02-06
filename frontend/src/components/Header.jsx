@@ -167,7 +167,7 @@ const Header = () => {
                             If I hide it, it's definitely locked.
                         */}
                         {isAuthenticated && (
-                            <div className="flex items-center gap-1 text-gray-500 font-medium font-prompt px-3 py-2 rounded-lg uppercase cursor-default">
+                            <div className="flex items-center gap-1 text-text-secondary font-medium font-prompt px-3 py-2 rounded-lg uppercase cursor-default">
                                 <Globe className="h-5 w-5" />
                                 <span>TH</span>
                             </div>
@@ -177,7 +177,7 @@ const Header = () => {
                             <div className="relative profile-menu-container">
                                 <button
                                     onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-                                    className="flex items-center gap-2 bg-white border border-gray-200 text-primary-900 px-4 py-2 rounded-lg font-medium font-prompt hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-brand/20"
+                                    className="flex items-center gap-2 bg-white border border-brand-light text-primary-900 px-4 py-2 rounded-lg font-medium font-prompt hover:bg-brand-light/50 transition-colors focus:outline-none focus:ring-2 focus:ring-brand/20"
                                 >
                                     <div className="w-8 h-8 rounded-full bg-brand/10 flex items-center justify-center text-brand">
                                         <User className="h-5 w-5" />
@@ -188,19 +188,19 @@ const Header = () => {
                                 </button>
 
                                 {isProfileMenuOpen && (
-                                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 origin-top-right transform transition-all duration-200 z-50">
-                                        <div className="px-4 py-3 border-b border-gray-100">
-                                            <p className="text-sm font-medium text-gray-900 truncate">
+                                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-brand-light py-1 origin-top-right transform transition-all duration-200 z-50">
+                                        <div className="px-4 py-3 border-b border-brand-light">
+                                            <p className="text-sm font-medium text-primary-900 truncate">
                                                 {user?.username}
                                             </p>
-                                            <p className="text-xs text-gray-500 truncate capitalize">
+                                            <p className="text-xs text-text-secondary truncate capitalize">
                                                 {user?.role}
                                             </p>
                                         </div>
 
                                         <Link
                                             to={getDashboardLink()}
-                                            className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-brand transition-colors"
+                                            className="flex items-center w-full px-4 py-2 text-sm text-text-main hover:bg-brand-light/50 hover:text-brand transition-colors"
                                             onClick={() => setIsProfileMenuOpen(false)}
                                         >
                                             <LayoutDashboard className="h-4 w-4 mr-2" />
@@ -257,7 +257,7 @@ const Header = () => {
                             </button>
                         )}
                         {isAuthenticated && (
-                            <span className="text-gray-500 font-medium font-prompt uppercase">TH</span>
+                            <span className="text-text-secondary font-medium font-prompt uppercase">TH</span>
                         )}
 
                         <button

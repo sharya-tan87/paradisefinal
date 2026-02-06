@@ -97,8 +97,6 @@ exports.createTreatment = async (req, res) => {
             status
         } = req.body;
 
-        console.log('Creating treatment for patient:', patientHN, 'by user:', req.user.userId);
-
         // Validation - ensure patient exists
         const patient = await Patient.findOne({ where: { hn: patientHN } });
         if (!patient) {

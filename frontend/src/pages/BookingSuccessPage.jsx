@@ -59,18 +59,18 @@ const BookingSuccessPage = () => {
                     </div>
 
                     {/* Confirmation Heading */}
-                    <h1 className="text-brand-dark font-bold text-3xl md:text-4xl mb-4">
+                    <h1 className="text-gradient-brand font-bold text-3xl md:text-4xl mb-4">
                         {t('booking.successPage.title')}
                     </h1>
 
                     {/* Confirmation Message */}
-                    <p className="text-gray-600 text-lg mb-8">
+                    <p className="text-text-secondary text-lg mb-8">
                         {t('booking.successPage.subTitle')}
                     </p>
 
                     {/* Reference ID */}
                     <div className="bg-brand-light/20 border-2 border-brand rounded-xl p-6 mb-8 inline-block w-full max-w-md shadow-lg">
-                        <p className="text-brand-dark font-semibold text-lg">
+                        <p className="text-text-secondary font-semibold text-lg">
                             {t('booking.successPage.reference')}
                         </p>
                         <p className="text-brand font-bold text-2xl mt-2">
@@ -81,32 +81,32 @@ const BookingSuccessPage = () => {
                     {/* Appointment Summary - Only show if we have data */}
                     {(name || date || time || service) && (
                         <div className="bg-white border border-gray-200 rounded-xl p-6 mb-8 text-left shadow-lg max-w-md mx-auto">
-                            <h2 className="text-brand-dark font-semibold text-xl mb-4 pb-2 border-b border-gray-100">
+                            <h2 className="text-gradient-brand font-semibold text-xl mb-4 pb-2 border-b border-gray-100">
                                 {t('booking.successPage.summaryTitle')}
                             </h2>
                             <div className="space-y-4">
                                 {name && (
                                     <div className="flex justify-between items-center">
-                                        <span className="text-gray-500">{t('booking.successPage.name')}:</span>
-                                        <span className="font-semibold text-gray-800">{name}</span>
+                                        <span className="text-text-secondary">{t('booking.successPage.name')}:</span>
+                                        <span className="font-semibold text-text-secondary">{name}</span>
                                     </div>
                                 )}
                                 {date && (
                                     <div className="flex justify-between items-center">
-                                        <span className="text-gray-500">{t('booking.successPage.date')}:</span>
-                                        <span className="font-semibold text-gray-800">{formatDate(date)}</span>
+                                        <span className="text-text-secondary">{t('booking.successPage.date')}:</span>
+                                        <span className="font-semibold text-text-secondary">{formatDate(date)}</span>
                                     </div>
                                 )}
                                 {time && (
                                     <div className="flex justify-between items-center">
-                                        <span className="text-gray-500">{t('booking.successPage.time')}:</span>
-                                        <span className="font-semibold text-gray-800">{time}</span>
+                                        <span className="text-text-secondary">{t('booking.successPage.time')}:</span>
+                                        <span className="font-semibold text-text-secondary">{time}</span>
                                     </div>
                                 )}
                                 {service && (
                                     <div className="flex justify-between items-center">
-                                        <span className="text-gray-500">{t('booking.successPage.service')}:</span>
-                                        <span className="font-semibold text-gray-800">{service}</span>
+                                        <span className="text-text-secondary">{t('booking.successPage.service')}:</span>
+                                        <span className="font-semibold text-text-secondary">{service}</span>
                                     </div>
                                 )}
                             </div>
@@ -114,18 +114,18 @@ const BookingSuccessPage = () => {
                     )}
 
                     {/* Next Steps */}
-                    <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 mb-8 max-w-md mx-auto">
-                        <h3 className="text-brand-dark font-semibold text-lg mb-2">
+                    <div className="bg-brand-light/30 border border-brand-light rounded-xl p-6 mb-8 max-w-md mx-auto">
+                        <h3 className="text-gradient-brand font-semibold text-lg mb-2">
                             {t('booking.successPage.nextStepsTitle')}
                         </h3>
-                        <p className="text-gray-600">
+                        <p className="text-text-secondary">
                             {t('booking.successPage.nextStepsMessage')}
                         </p>
                     </div>
 
                     {/* Countdown and CTA Button */}
                     <div className="space-y-4">
-                        <p className="text-gray-500 text-sm">
+                        <p className="text-text-secondary text-sm">
                             กำลังนำคุณกลับสู่หน้าหลักใน <span className="font-bold text-brand">{countdown}</span> วินาที...
                         </p>
                         <button

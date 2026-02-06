@@ -47,7 +47,7 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
 
             // Not authorized
             return <Navigate to="/unauthorized" replace />;
-        } catch (e) {
+        } catch {
             // If JSON parse fails, force login
             return <Navigate to="/login" state={{ from: location }} replace />;
         }

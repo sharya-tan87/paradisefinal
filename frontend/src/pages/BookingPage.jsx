@@ -19,11 +19,14 @@ const BookingPage = () => {
     // Examples: 0812345678, 081-234-5678, 02-1234-5678, 0952597922, 095-259-7922
     const phoneRegex = /^0[0-9]{9}$|^0[2-9]-[0-9]{4}-[0-9]{4}$|^0[0-9]{2}-[0-9]{3}-[0-9]{4}$/;
 
-    // Calculate max date (6 months from today)
+    // Import booking configuration
+    const bookingConfig = { maxAdvanceMonths: 6 }; // From config/business.js
+
+    // Calculate max date based on config
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-    const sixMonthsFromNow = new Date();
-    sixMonthsFromNow.setMonth(sixMonthsFromNow.getMonth() + 6);
+    const maxBookingDate = new Date();
+    maxBookingDate.setMonth(maxBookingDate.getMonth() + bookingConfig.maxAdvanceMonths);
 
     const schema = yup.object({
         name: yup.string()
@@ -41,7 +44,7 @@ const BookingPage = () => {
         preferredDate: yup.date()
             .required(t('booking.errors.required'))
             .min(today, 'Date must be in the future')
-            .max(sixMonthsFromNow, 'Date must be within 6 months'),
+            .max(maxBookingDate, 'Date must be within 6 months'),
 
         preferredTime: yup.string()
             .required(t('booking.errors.required')),
@@ -107,13 +110,13 @@ const BookingPage = () => {
         <div className="min-h-screen bg-white font-prompt flex flex-col">
             <Header />
 
-            <main className="flex-grow py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+            <main className="flex-grow py-12 px-4 sm:px-6 lg:px-8 bg-white">
                 <div className="max-w-2xl mx-auto">
                     <div className="text-center mb-10">
-                        <h1 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+                        <h1 className="text-3xl md:text-4xl font-bold text-gradient-brand mb-4">
                             {t('booking.title')}
                         </h1>
-                        <p className="text-lg text-gray-600 max-w-xl mx-auto">
+                        <p className="text-lg text-text-secondary max-w-xl mx-auto">
                             {t('booking.subtitle')}
                         </p>
                     </div>
@@ -148,7 +151,7 @@ const BookingPage = () => {
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                                 {/* Name */}
                                 <div>
-                                    <label htmlFor="name" className="block text-primary-900 font-semibold mb-2 flex items-center gap-2">
+                                    <label htmlFor="name" className="block text-text-secondary font-semibold mb-2 flex items-center gap-2">
                                         <User className="w-4 h-4 text-brand" />
                                         {t('booking.form.name')} <span className="text-red-500">*</span>
                                     </label>
@@ -159,7 +162,7 @@ const BookingPage = () => {
                                         placeholder={t('booking.form.namePlaceholder')}
                                         aria-invalid={errors.name ? 'true' : 'false'}
                                         aria-describedby={errors.name ? 'name-error' : undefined}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all ${errors.name ? 'border-red-300 bg-red-50' : 'border-gray-200'}`}
+                                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all ${errors.name ? 'border-red-300 bg-red-50' : 'border-brand-light'}`}
                                     />
                                     {errors.name && (
                                         <p id="name-error" className="text-red-600 font-prompt text-sm mt-1">{errors.name.message}</p>
@@ -170,7 +173,7 @@ const BookingPage = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {/* Phone */}
                                     <div>
-                                        <label htmlFor="phone" className="block text-primary-900 font-semibold mb-2 flex items-center gap-2">
+                                        <label htmlFor="phone" className="block text-text-secondary font-semibold mb-2 flex items-center gap-2">
                                             <Phone className="w-4 h-4 text-brand" />
                                             {t('booking.form.phone')} <span className="text-red-500">*</span>
                                         </label>
@@ -206,7 +209,7 @@ const BookingPage = () => {
                                             placeholder="0XX-XXX-XXXX"
                                             aria-invalid={errors.phone ? 'true' : 'false'}
                                             aria-describedby={errors.phone ? 'phone-error' : undefined}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all ${errors.phone ? 'border-red-300 bg-red-50' : 'border-gray-200'}`}
+                                            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all ${errors.phone ? 'border-red-300 bg-red-50' : 'border-brand-light'}`}
                                         />
                                         {errors.phone && (
                                             <p id="phone-error" className="text-red-600 font-prompt text-sm mt-1">{errors.phone.message}</p>
@@ -215,7 +218,7 @@ const BookingPage = () => {
 
                                     {/* Email */}
                                     <div>
-                                        <label htmlFor="email" className="block text-primary-900 font-semibold mb-2 flex items-center gap-2">
+                                        <label htmlFor="email" className="block text-text-secondary font-semibold mb-2 flex items-center gap-2">
                                             <Mail className="w-4 h-4 text-brand" />
                                             {t('booking.form.email')} <span className="text-red-500">*</span>
                                         </label>
@@ -226,7 +229,7 @@ const BookingPage = () => {
                                             placeholder={t('booking.form.emailPlaceholder')}
                                             aria-invalid={errors.email ? 'true' : 'false'}
                                             aria-describedby={errors.email ? 'email-error' : undefined}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all ${errors.email ? 'border-red-300 bg-red-50' : 'border-gray-200'}`}
+                                            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all ${errors.email ? 'border-red-300 bg-red-50' : 'border-brand-light'}`}
                                         />
                                         {errors.email && (
                                             <p id="email-error" className="text-red-600 font-prompt text-sm mt-1">{errors.email.message}</p>
@@ -238,7 +241,7 @@ const BookingPage = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {/* Date */}
                                     <div>
-                                        <label htmlFor="preferredDate" className="block text-primary-900 font-semibold mb-2 flex items-center gap-2">
+                                        <label htmlFor="preferredDate" className="block text-text-secondary font-semibold mb-2 flex items-center gap-2">
                                             <Calendar className="w-4 h-4 text-brand" />
                                             {t('booking.form.date')} <span className="text-red-500">*</span>
                                         </label>
@@ -246,11 +249,11 @@ const BookingPage = () => {
                                             id="preferredDate"
                                             type="date"
                                             min={new Date().toISOString().split('T')[0]}
-                                            max={sixMonthsFromNow.toISOString().split('T')[0]}
+                                            max={maxBookingDate.toISOString().split('T')[0]}
                                             {...register('preferredDate')}
                                             aria-invalid={errors.preferredDate ? 'true' : 'false'}
                                             aria-describedby={errors.preferredDate ? 'preferredDate-error' : undefined}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all ${errors.preferredDate ? 'border-red-300 bg-red-50' : 'border-gray-200'}`}
+                                            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all ${errors.preferredDate ? 'border-red-300 bg-red-50' : 'border-brand-light'}`}
                                         />
                                         {errors.preferredDate && (
                                             <p id="preferredDate-error" className="text-red-600 font-prompt text-sm mt-1">{errors.preferredDate.message}</p>
@@ -259,7 +262,7 @@ const BookingPage = () => {
 
                                     {/* Time */}
                                     <div>
-                                        <label htmlFor="preferredTime" className="block text-primary-900 font-semibold mb-2 flex items-center gap-2">
+                                        <label htmlFor="preferredTime" className="block text-text-secondary font-semibold mb-2 flex items-center gap-2">
                                             <Clock className="w-4 h-4 text-brand" />
                                             {t('booking.form.time')} <span className="text-red-500">*</span>
                                         </label>
@@ -268,7 +271,7 @@ const BookingPage = () => {
                                             {...register('preferredTime')}
                                             aria-invalid={errors.preferredTime ? 'true' : 'false'}
                                             aria-describedby={errors.preferredTime ? 'preferredTime-error' : undefined}
-                                            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all bg-white ${errors.preferredTime ? 'border-red-300 bg-red-50' : 'border-gray-200'}`}
+                                            className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all bg-white ${errors.preferredTime ? 'border-red-300 bg-red-50' : 'border-brand-light'}`}
                                         >
                                             <option value="">{t('booking.form.timePlaceholder')}</option>
                                             {timeSlots.map(time => (
@@ -283,7 +286,7 @@ const BookingPage = () => {
 
                                 {/* Service Type */}
                                 <div>
-                                    <label htmlFor="serviceType" className="block text-primary-900 font-semibold mb-2">
+                                    <label htmlFor="serviceType" className="block text-text-secondary font-semibold mb-2">
                                         {t('booking.form.service')} <span className="text-red-500">*</span>
                                     </label>
                                     <select
@@ -291,7 +294,7 @@ const BookingPage = () => {
                                         {...register('serviceType')}
                                         aria-invalid={errors.serviceType ? 'true' : 'false'}
                                         aria-describedby={errors.serviceType ? 'serviceType-error' : undefined}
-                                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all bg-white ${errors.serviceType ? 'border-red-300 bg-red-50' : 'border-gray-200'}`}
+                                        className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all bg-white ${errors.serviceType ? 'border-red-300 bg-red-50' : 'border-brand-light'}`}
                                     >
                                         <option value="">{t('booking.form.servicePlaceholder')}</option>
                                         <option value="General Checkup">{t('booking.services.general')}</option>
@@ -308,7 +311,7 @@ const BookingPage = () => {
 
                                 {/* Notes */}
                                 <div>
-                                    <label htmlFor="notes" className="block text-primary-900 font-semibold mb-2 flex items-center gap-2">
+                                    <label htmlFor="notes" className="block text-text-secondary font-semibold mb-2 flex items-center gap-2">
                                         <FileText className="w-4 h-4 text-brand" />
                                         {t('booking.form.notes')}
                                     </label>
@@ -317,7 +320,7 @@ const BookingPage = () => {
                                         rows="4"
                                         {...register('notes')}
                                         placeholder={t('booking.form.notesPlaceholder')}
-                                        className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all resize-none"
+                                        className="w-full px-4 py-3 border border-brand-light rounded-lg focus:ring-2 focus:ring-primary-200 focus:border-brand outline-none transition-all resize-none"
                                     ></textarea>
                                 </div>
 

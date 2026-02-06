@@ -24,14 +24,14 @@ const UnauthorizedPage = () => {
                     </svg>
                 </div>
 
-                <h1 className="text-3xl font-bold text-primary-900 mb-4">
+                <h1 className="text-3xl font-bold text-gradient-brand mb-4">
                     Access Denied
                 </h1>
 
-                <p className="text-gray-600 mb-2">
+                <p className="text-text-secondary mb-2">
                     You do not have permission to view this page.
                 </p>
-                <p className="text-gray-500 text-sm mb-8">
+                <p className="text-text-secondary text-sm mb-8"> :
                     Your current role: <span className="font-semibold">{userRole}</span>
                 </p>
 

@@ -310,13 +310,13 @@ const CalendarPage = () => {
             {/* Header Section */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-3">
+                    <h1 className="text-2xl font-bold text-gradient-brand flex items-center gap-3">
                         <div className="bg-teal-100 p-2 rounded-lg text-teal-600">
                             <CalendarIcon size={24} />
                         </div>
                         {t('calendarPage.header')}
                     </h1>
-                    <p className="text-gray-500 text-sm mt-1 ml-11">{t('calendarPage.subtitle')}</p>
+                    <p className="text-text-secondary text-sm mt-1 ml-11">{t('calendarPage.subtitle')}</p>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
@@ -348,57 +348,59 @@ const CalendarPage = () => {
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 relative min-h-[600px]">
                 {loading && (
                     <div className="absolute inset-0 z-20 bg-white/60 backdrop-blur-[2px] flex items-center justify-center rounded-2xl">
-                        <Loader2 className="w-10 h-10 text-teal-600 animate-spin" />
+                        <Loader2 className="w-10 h-10 text-brand animate-spin" />
                     </div>
                 )}
 
                 <style>{`
+                    /* Brand-compliant FullCalendar styles */
+                    /* Colors: #CEE0F3 (light), #2D7C9C (brand), #214491 (dark) */
                     .fc { font-family: inherit; }
-                    .fc-theme-standard td, .fc-theme-standard th { border-color: #E5E7EB; }
-                    .fc-col-header-cell { background-color: #F9FAFB; padding: 10px 0; }
+                    .fc-theme-standard td, .fc-theme-standard th { border-color: #CEE0F3; }
+                    .fc-col-header-cell { background-color: #CEE0F3; padding: 10px 0; }
                     .fc-timegrid-slot { height: 3rem; }
-                    
+
                     .fc-header-toolbar { margin-bottom: 1.5rem !important; }
-                    .fc-toolbar-title { font-size: 1.25rem !important; font-weight: 600 !important; color: #111827; }
-                    
-                    .fc-button-primary { 
-                        background-color: #2D7C9C !important; 
-                        border-color: #2D7C9C !important; 
+                    .fc-toolbar-title { font-size: 1.25rem !important; font-weight: 600 !important; color: #214491; }
+
+                    .fc-button-primary {
+                        background-color: #2D7C9C !important;
+                        border-color: #2D7C9C !important;
                         font-weight: 500 !important;
                         padding: 0.5rem 1rem !important;
                         border-radius: 0.5rem !important;
                     }
-                    .fc-button-primary:hover { 
-                        background-color: #1A5F7A !important; 
-                        border-color: #1A5F7A !important;
+                    .fc-button-primary:hover {
+                        background-color: #214491 !important;
+                        border-color: #214491 !important;
                     }
-                    .fc-button-active { 
-                        background-color: #1A5F7A !important; 
-                        border-color: #1A5F7A !important; 
+                    .fc-button-active {
+                        background-color: #214491 !important;
+                        border-color: #214491 !important;
                     }
-                    
+
                     /* Event Styling with Drag & Drop */
-                    .fc-event { 
-                        border-radius: 6px; 
-                        border: none; 
-                        padding: 4px 6px; 
-                        font-size: 0.85rem; 
+                    .fc-event {
+                        border-radius: 6px;
+                        border: none;
+                        padding: 4px 6px;
+                        font-size: 0.85rem;
                         cursor: grab;
                         transition: transform 0.15s ease, box-shadow 0.15s ease;
                     }
-                    .fc-event:hover { 
+                    .fc-event:hover {
                         filter: brightness(1.05);
-                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                        box-shadow: 0 4px 12px rgba(33, 68, 145, 0.15);
                         transform: scale(1.01);
                     }
                     .fc-event:active,
-                    .fc-event.fc-event-dragging { 
+                    .fc-event.fc-event-dragging {
                         cursor: grabbing;
-                        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+                        box-shadow: 0 8px 20px rgba(33, 68, 145, 0.25);
                         transform: scale(1.03);
                         z-index: 999 !important;
                     }
-                    
+
                     /* Resize handle styling */
                     .fc-event-resizer {
                         opacity: 0;
@@ -414,15 +416,15 @@ const CalendarPage = () => {
                         background: linear-gradient(transparent, rgba(255,255,255,0.5));
                         border-radius: 0 0 6px 6px;
                     }
-                    
+
                     /* Mirror event (ghost while dragging) */
                     .fc-event-mirror {
                         opacity: 0.7;
-                        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+                        box-shadow: 0 8px 20px rgba(33, 68, 145, 0.3);
                     }
-                    
-                    .fc-day-today { background-color: #F0FDFA !important; }
-                    
+
+                    .fc-day-today { background-color: rgba(206, 224, 243, 0.3) !important; }
+
                     /* Highlight drop zones */
                     .fc-timegrid-slot:hover {
                         background-color: rgba(45, 124, 156, 0.05);

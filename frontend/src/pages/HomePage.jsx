@@ -1,8 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { ShieldCheckIcon, SparklesIcon, AdjustmentsHorizontalIcon, HeartIcon, UserGroupIcon, CurrencyDollarIcon } from '@heroicons/react/24/outline';
-import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import { Shield, Sparkles, SlidersHorizontal, Heart, Users, DollarSign, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -15,7 +14,7 @@ const HomePage = () => {
 
             <main className="flex-grow -mt-[88px]">
                 {/* Hero Section - Premium Modern */}
-                <section className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-0" style={{ background: 'linear-gradient(120deg, #ffffff 0%, #ffffff 60%, rgba(20, 184, 166, 0.15) 100%)' }}>
+                <section className="relative min-h-screen flex items-center overflow-hidden pt-24 pb-0" style={{ background: 'linear-gradient(120deg, #ffffff 0%, #ffffff 60%, rgba(206, 224, 243, 0.6) 100%)' }}>
                     {/* Background Blobs - Enhanced */}
                     <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-gradient-to-br from-brand-light/30 to-blue-200/20 rounded-full blur-3xl opacity-60 animate-pulse-slow"></div>
                     <div className="absolute bottom-[-5%] left-[-10%] w-[700px] h-[700px] bg-gradient-to-tr from-brand-light/20 to-purple-100/30 rounded-full blur-3xl opacity-50"></div>
@@ -35,9 +34,10 @@ const HomePage = () => {
 
                             {/* Content - Shows first on mobile, second on desktop (LEFT) */}
                             <div className="text-center lg:text-left space-y-8 animate-fade-in-up order-1 lg:order-2">
-                                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.35] text-primary-900">
+                                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.4] text-gradient-brand py-2">
                                     {t('hero.title_part1')} <br />
-                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand to-brand-dark">{t('hero.title_part2')}</span>
+                                    {t('hero.title_part2')} <br />
+                                    {t('hero.title_part3')}
                                 </h1>
 
                                 <p className="text-xl text-text-secondary leading-relaxed max-w-2xl mx-auto lg:mx-0 font-light">
@@ -67,15 +67,15 @@ const HomePage = () => {
                         {/* Trust Indicators - Below CTAs, Centered */}
                         <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 pt-12 pb-8 text-sm font-medium text-text-secondary w-full">
                             <div className="flex items-center gap-2 p-2 rounded-lg hover:bg-white/50 transition-colors">
-                                <CheckCircleIcon className="h-5 w-5 text-brand" />
+                                <CheckCircle className="h-5 w-5 text-brand" />
                                 <span>{t('hero.trust_1')}</span>
                             </div>
                             <div className="flex items-center gap-2 p-2 rounded-lg hover:bg-white/50 transition-colors">
-                                <CheckCircleIcon className="h-5 w-5 text-brand" />
+                                <CheckCircle className="h-5 w-5 text-brand" />
                                 <span>{t('hero.trust_2')}</span>
                             </div>
                             <div className="flex items-center gap-2 p-2 rounded-lg hover:bg-white/50 transition-colors">
-                                <CheckCircleIcon className="h-5 w-5 text-brand" />
+                                <CheckCircle className="h-5 w-5 text-brand" />
                                 <span>{t('hero.trust_3')}</span>
                             </div>
                         </div>
@@ -88,7 +88,7 @@ const HomePage = () => {
 
                     <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gradient-brand mb-4">
                                 {t('services.title')}
                             </h2>
                         </div>
@@ -99,11 +99,11 @@ const HomePage = () => {
                                 <div className="flex items-start gap-6">
                                     <div className="flex-shrink-0">
                                         <div className="h-16 w-16 rounded-2xl bg-brand-light flex items-center justify-center">
-                                            <AdjustmentsHorizontalIcon className="h-8 w-8 text-brand" />
+                                            <SlidersHorizontal className="h-8 w-8 text-brand" />
                                         </div>
                                     </div>
                                     <div className="flex-1">
-                                        <h3 className="text-xl font-bold text-brand-dark mb-2">
+                                        <h3 className="text-xl font-bold text-gradient-brand mb-2">
                                             {t('services.ortho.title')}
                                         </h3>
                                         <p className="text-text-secondary leading-relaxed text-sm">
@@ -118,11 +118,11 @@ const HomePage = () => {
                                 <div className="flex items-start gap-6">
                                     <div className="flex-shrink-0">
                                         <div className="h-16 w-16 rounded-2xl bg-brand-light flex items-center justify-center">
-                                            <SparklesIcon className="h-8 w-8 text-brand" />
+                                            <Sparkles className="h-8 w-8 text-brand" />
                                         </div>
                                     </div>
                                     <div className="flex-1">
-                                        <h3 className="text-xl font-bold text-brand-dark mb-2">
+                                        <h3 className="text-xl font-bold text-gradient-brand mb-2">
                                             {t('services.cosmetic.title')}
                                         </h3>
                                         <p className="text-text-secondary leading-relaxed text-sm">
@@ -137,11 +137,11 @@ const HomePage = () => {
                                 <div className="flex items-start gap-6">
                                     <div className="flex-shrink-0">
                                         <div className="h-16 w-16 rounded-2xl bg-brand-light flex items-center justify-center">
-                                            <ShieldCheckIcon className="h-8 w-8 text-brand" />
+                                            <Shield className="h-8 w-8 text-brand" />
                                         </div>
                                     </div>
                                     <div className="flex-1">
-                                        <h3 className="text-xl font-bold text-brand-dark mb-2">
+                                        <h3 className="text-xl font-bold text-gradient-brand mb-2">
                                             {t('services.general.title')}
                                         </h3>
                                         <p className="text-text-secondary leading-relaxed text-sm">
@@ -156,11 +156,11 @@ const HomePage = () => {
                                 <div className="flex items-start gap-6">
                                     <div className="flex-shrink-0">
                                         <div className="h-16 w-16 rounded-2xl bg-brand-light flex items-center justify-center">
-                                            <HeartIcon className="h-8 w-8 text-brand" />
+                                            <Heart className="h-8 w-8 text-brand" />
                                         </div>
                                     </div>
                                     <div className="flex-1">
-                                        <h3 className="text-xl font-bold text-brand-dark mb-2">
+                                        <h3 className="text-xl font-bold text-gradient-brand mb-2">
                                             {t('services.care.title')}
                                         </h3>
                                         <p className="text-text-secondary leading-relaxed text-sm">
@@ -185,11 +185,11 @@ const HomePage = () => {
                 {/* Team Section */}
                 <section className="py-24 md:py-32 lg:py-40 bg-gradient-to-b from-white via-brand-light/20 to-white relative overflow-hidden">
                     {/* Subtle Background Pattern */}
-                    <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] opacity-[0.15]"></div>
+                    <div className="absolute inset-0 bg-[radial-gradient(#CEE0F3_1px,transparent_1px)] [background-size:20px_20px] opacity-[0.15]"></div>
 
                     <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gradient-brand mb-4">
                                 {t('about.team.title')}
                             </h2>
                             <p className="text-lg text-text-secondary max-w-2xl mx-auto">
@@ -202,10 +202,10 @@ const HomePage = () => {
                             <div className="group bg-white rounded-xl border border-brand-light p-6 shadow-sm hover:shadow-lg transition-all duration-300">
                                 <div className="aspect-square rounded-lg bg-brand-light/50 mb-6 overflow-hidden">
                                     <div className="w-full h-full flex items-center justify-center">
-                                        <UserGroupIcon className="h-20 w-20 text-brand" />
+                                        <Users className="h-20 w-20 text-brand" />
                                     </div>
                                 </div>
-                                <h3 className="text-xl font-bold text-brand-dark mb-2">
+                                <h3 className="text-xl font-bold text-gradient-brand mb-2">
                                     {t('about.team.member1.name')}
                                 </h3>
                                 <p className="text-brand font-semibold text-sm mb-3">
@@ -220,10 +220,10 @@ const HomePage = () => {
                             <div className="group bg-white rounded-xl border border-brand-light p-6 shadow-sm hover:shadow-lg transition-all duration-300">
                                 <div className="aspect-square rounded-lg bg-brand-light/50 mb-6 overflow-hidden">
                                     <div className="w-full h-full flex items-center justify-center">
-                                        <UserGroupIcon className="h-20 w-20 text-brand" />
+                                        <Users className="h-20 w-20 text-brand" />
                                     </div>
                                 </div>
-                                <h3 className="text-xl font-bold text-brand-dark mb-2">
+                                <h3 className="text-xl font-bold text-gradient-brand mb-2">
                                     {t('about.team.member2.name')}
                                 </h3>
                                 <p className="text-brand font-semibold text-sm mb-3">
@@ -238,10 +238,10 @@ const HomePage = () => {
                             <div className="group bg-white rounded-xl border border-brand-light p-6 shadow-sm hover:shadow-lg transition-all duration-300">
                                 <div className="aspect-square rounded-lg bg-brand-light/50 mb-6 overflow-hidden">
                                     <div className="w-full h-full flex items-center justify-center">
-                                        <UserGroupIcon className="h-20 w-20 text-brand" />
+                                        <Users className="h-20 w-20 text-brand" />
                                     </div>
                                 </div>
-                                <h3 className="text-xl font-bold text-brand-dark mb-2">
+                                <h3 className="text-xl font-bold text-gradient-brand mb-2">
                                     {t('about.team.member3.name')}
                                 </h3>
                                 <p className="text-brand font-semibold text-sm mb-3">
@@ -256,10 +256,10 @@ const HomePage = () => {
                             <div className="group bg-white rounded-xl border border-brand-light p-6 shadow-sm hover:shadow-lg transition-all duration-300">
                                 <div className="aspect-square rounded-lg bg-brand-light/50 mb-6 overflow-hidden">
                                     <div className="w-full h-full flex items-center justify-center">
-                                        <UserGroupIcon className="h-20 w-20 text-brand" />
+                                        <Users className="h-20 w-20 text-brand" />
                                     </div>
                                 </div>
-                                <h3 className="text-xl font-bold text-brand-dark mb-2">
+                                <h3 className="text-xl font-bold text-gradient-brand mb-2">
                                     {t('about.team.member4.name')}
                                 </h3>
                                 <p className="text-brand font-semibold text-sm mb-3">
@@ -281,7 +281,7 @@ const HomePage = () => {
 
                     <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
                         <div className="text-center mb-16">
-                            <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gradient-brand mb-4">
                                 {t('pricing.title')}
                             </h2>
                             <p className="text-lg text-text-secondary max-w-2xl mx-auto">
@@ -298,7 +298,7 @@ const HomePage = () => {
                                     </span>
                                 </div>
                                 <div className="mt-4 text-center">
-                                    <h3 className="text-xl font-bold text-brand-dark mb-4">
+                                    <h3 className="text-xl font-bold text-gradient-brand mb-4">
                                         {t('pricing.health.title')}
                                     </h3>
                                     <p className="text-text-secondary text-sm mb-6">
@@ -308,7 +308,7 @@ const HomePage = () => {
                                         <p className="text-sm text-brand font-semibold mb-2">
                                             {t('pricing.health.price')}
                                         </p>
-                                        <p className="text-4xl font-bold text-brand-dark">
+                                        <p className="text-4xl font-bold text-gradient-brand">
                                             ฿{t('pricing.health.priceAmount')}
                                         </p>
                                     </div>
@@ -319,7 +319,7 @@ const HomePage = () => {
                                         to="/booking"
                                         className="block w-full bg-brand text-white py-3 rounded-lg font-semibold hover:bg-brand-dark transition-colors"
                                     >
-                                        จองเลย
+                                        {t('common.bookNow')}
                                     </Link>
                                 </div>
                             </div>
@@ -332,12 +332,12 @@ const HomePage = () => {
                                     </span>
                                 </div>
                                 <div className="absolute top-4 right-4">
-                                    <span className="bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                    <span className="bg-brand-dark text-white px-3 py-1 rounded-full text-xs font-bold">
                                         {t('pricing.orthodontics.subtitle')}
                                     </span>
                                 </div>
                                 <div className="mt-4 text-center">
-                                    <h3 className="text-xl font-bold text-brand-dark mb-4">
+                                    <h3 className="text-xl font-bold text-gradient-brand mb-4">
                                         {t('pricing.orthodontics.title')}
                                     </h3>
                                     <p className="text-text-secondary text-sm mb-4">
@@ -347,7 +347,7 @@ const HomePage = () => {
                                         <p className="text-sm text-brand font-semibold mb-2">
                                             {t('pricing.orthodontics.price')}
                                         </p>
-                                        <p className="text-4xl font-bold text-brand-dark">
+                                        <p className="text-4xl font-bold text-gradient-brand">
                                             ฿{t('pricing.orthodontics.priceAmount')}
                                         </p>
                                     </div>
@@ -366,7 +366,7 @@ const HomePage = () => {
                                         to="/booking"
                                         className="block w-full bg-gradient-to-r from-brand to-brand-dark text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all"
                                     >
-                                        จองปรึกษาเลย
+                                        {t('common.bookConsult')}
                                     </Link>
                                 </div>
                             </div>
@@ -379,7 +379,7 @@ const HomePage = () => {
                                     </span>
                                 </div>
                                 <div className="mt-4 text-center">
-                                    <h3 className="text-xl font-bold text-brand-dark mb-4">
+                                    <h3 className="text-xl font-bold text-gradient-brand mb-4">
                                         {t('pricing.whitening.title')}
                                     </h3>
                                     <p className="text-text-secondary text-sm mb-6">
@@ -393,8 +393,8 @@ const HomePage = () => {
                                             {t('pricing.whitening.details')}
                                         </p>
                                     </div>
-                                    <div className="bg-red-50 border border-red-200 rounded-lg p-3 mb-6">
-                                        <p className="text-sm text-red-600 font-bold">
+                                    <div className="bg-brand-light border border-brand rounded-lg p-3 mb-6">
+                                        <p className="text-sm text-brand-dark font-bold">
                                             🎉 {t('pricing.whitening.discount')}
                                         </p>
                                     </div>
@@ -405,7 +405,7 @@ const HomePage = () => {
                                         to="/booking"
                                         className="block w-full bg-brand text-white py-3 rounded-lg font-semibold hover:bg-brand-dark transition-colors"
                                     >
-                                        จองเลย
+                                        {t('common.bookNow')}
                                     </Link>
                                 </div>
                             </div>
@@ -421,7 +421,7 @@ const HomePage = () => {
 
                     <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
                         <div className="text-center mb-12">
-                            <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+                            <h2 className="text-3xl md:text-4xl font-bold text-gradient-brand mb-4">
                                 {t('reviews.title')}
                             </h2>
                             <p className="text-lg text-text-secondary max-w-2xl mx-auto">
@@ -433,11 +433,11 @@ const HomePage = () => {
                         <div className="mb-16">
                             <div className="bg-white rounded-2xl border-2 border-brand-light p-8 shadow-lg max-w-4xl mx-auto">
                                 <div className="text-center mb-6">
-                                    <h3 className="text-2xl font-bold text-brand-dark mb-2">
+                                    <h3 className="text-2xl font-bold text-gradient-brand mb-2">
                                         {t('reviews.beforeAfter')}
                                     </h3>
                                     <p className="text-text-secondary text-sm">
-                                        ผลงานการรักษาจริงจากคนไข้ของเรา
+                                        {t('reviews.realWork')}
                                     </p>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -445,8 +445,8 @@ const HomePage = () => {
                                     <div className="text-center">
                                         <div className="aspect-square bg-brand-light/50 rounded-xl mb-4 flex items-center justify-center">
                                             <div className="text-center">
-                                                <SparklesIcon className="h-20 w-20 text-brand mx-auto mb-2" />
-                                                <p className="text-brand font-semibold">ก่อนการรักษา</p>
+                                                <Sparkles className="h-20 w-20 text-brand mx-auto mb-2" />
+                                                <p className="text-brand font-semibold">{t('reviews.before')}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -454,8 +454,8 @@ const HomePage = () => {
                                     <div className="text-center">
                                         <div className="aspect-square bg-brand-light/50 rounded-xl mb-4 flex items-center justify-center">
                                             <div className="text-center">
-                                                <SparklesIcon className="h-20 w-20 text-brand mx-auto mb-2" />
-                                                <p className="text-brand font-semibold">หลังการรักษา</p>
+                                                <Sparkles className="h-20 w-20 text-brand mx-auto mb-2" />
+                                                <p className="text-brand font-semibold">{t('reviews.after')}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -465,7 +465,7 @@ const HomePage = () => {
 
                         {/* Testimonials Grid */}
                         <div>
-                            <h3 className="text-2xl font-bold text-brand-dark text-center mb-12">
+                            <h3 className="text-2xl font-bold text-gradient-brand text-center mb-12">
                                 {t('reviews.testimonials.title')}
                             </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -582,14 +582,14 @@ const HomePage = () => {
                                 {/* Placeholder for 6th review or CTA */}
                                 <div className="bg-gradient-to-br from-brand to-brand-dark rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow flex items-center justify-center">
                                     <div className="text-center text-white">
-                                        <SparklesIcon className="h-12 w-12 mx-auto mb-4" />
-                                        <h4 className="text-xl font-bold mb-2">เป็นคนถัดไป?</h4>
-                                        <p className="text-sm mb-6">แชร์ประสบการณ์ของคุณกับเรา</p>
+                                        <Sparkles className="h-12 w-12 mx-auto mb-4" />
+                                        <h4 className="text-xl font-bold mb-2">{t('reviews.nextPerson')}</h4>
+                                        <p className="text-sm mb-6">{t('reviews.shareExperience')}</p>
                                         <Link
                                             to="/booking"
                                             className="inline-block bg-white text-brand px-6 py-2 rounded-full font-semibold hover:bg-brand-light transition-colors"
                                         >
-                                            จองคิวเลย
+                                            {t('reviews.bookQueue')}
                                         </Link>
                                     </div>
                                 </div>

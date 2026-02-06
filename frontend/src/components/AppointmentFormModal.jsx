@@ -49,7 +49,7 @@ const AppointmentFormModal = ({
         status: yup.string().oneOf(['scheduled', 'confirmed', 'in-progress', 'completed', 'cancelled', 'no-show'])
     });
 
-    const { register, handleSubmit, control, setValue, watch, reset, formState: { errors, isSubmitting } } = useForm({
+    const { register, handleSubmit, setValue, reset, formState: { errors, isSubmitting } } = useForm({
         resolver: yupResolver(schema),
         defaultValues: {
             status: 'scheduled',
@@ -349,11 +349,7 @@ const AppointmentFormModal = ({
                                 <button
                                     type="button"
                                     onClick={onDelete}
-                                    className="px-4 py-2 border border-red-200 text-red-600 rounded-lg text-sm font-medium hover:bg-red-50 transition-colors"
-                                >
-                                    type="button"
-                                    onClick={onDelete}
-                                    className="px-4 py-2 border border-red-200 text-red-600 rounded-lg text-sm font-medium hover:bg-red-50 transition-colors"
+                                    className="px-4 py-2 border border-brand-light text-brand-dark rounded-lg text-sm font-medium hover:bg-brand-light/50 transition-colors"
                                 >
                                     {t('appointmentForm.deleteButton')}
                                 </button>
