@@ -47,7 +47,7 @@ const ServicesPage = () => {
                             {/* Mascot Image - Shows second on mobile, first on desktop (LEFT) */}
                             <div className="relative flex justify-center lg:justify-start lg:h-[700px] items-center order-2 lg:order-1">
                                 <img
-                                    src="/img/paradise_service.svg"
+                                    src={`${import.meta.env.BASE_URL}img/paradise_service.svg`}
                                     alt="Our Services"
                                     className="w-full max-w-[435px] lg:max-w-[490px] h-auto drop-shadow-2xl animate-float relative z-10 hover:scale-105 transition-transform duration-500 ease-out"
                                 />

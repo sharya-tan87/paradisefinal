@@ -31,7 +31,7 @@ const Footer = () => {
                         {/* Top: Clinic Logo */}
                         <div className="mb-8">
                             <img
-                                src="/img/paradise-logo.png"
+                                src={`${import.meta.env.BASE_URL}img/paradise-logo.png`}
                                 alt="Paradise Dental Clinic"
                                 className="h-12 w-auto"
                             />

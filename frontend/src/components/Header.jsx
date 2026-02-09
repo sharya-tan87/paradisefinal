@@ -126,7 +126,7 @@ const Header = () => {
                     {/* Logo Section */}
                     <div className="flex-shrink-0 flex items-center">
                         <Link to="/" className="flex items-center group">
-                            <img src="/img/paradise-logo.png" alt="Paradise Dental Clinic" className="h-[53px] w-auto" />
+                            <img src={`${import.meta.env.BASE_URL}img/paradise-logo.png`} alt="Paradise Dental Clinic" className="h-[53px] w-auto" />
                         </Link>
                     </div>
 
