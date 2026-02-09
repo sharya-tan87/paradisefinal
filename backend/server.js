@@ -34,7 +34,8 @@ const corsOrigins = process.env.NODE_ENV === 'production'
         'http://localhost:5173',
         'http://localhost:5174',
         'http://127.0.0.1:5173',
-        'http://127.0.0.1:5174'
+        'http://127.0.0.1:5174',
+        'https://sharya-tan87.github.io'
     ];
 
 if (corsOrigins.length === 0) {
@@ -164,18 +165,43 @@ async function gracefulShutdown(signal) {
     }, 30000);
 }
 
+// Auto-seed demo users if Users table is empty
+async function seedDemoUsers() {
+    try {
+        const { User } = require('./models');
+        const count = await User.count();
+        if (count === 0) {
+            const bcrypt = require('bcryptjs');
+            const hash = await bcrypt.hash('password123', 10);
+            const demoUsers = [
+                { username: 'admin', email: 'admin@paradisedental.com', role: 'admin' },
+                { username: 'manager', email: 'manager@paradisedental.com', role: 'manager' },
+                { username: 'dentist', email: 'dentist@paradisedental.com', role: 'dentist' },
+                { username: 'staff', email: 'staff@paradisedental.com', role: 'staff' },
+                { username: 'patient', email: 'patient@paradisedental.com', role: 'patient' },
+            ];
+            for (const u of demoUsers) {
+                await User.create({ ...u, passwordHash: hash });
+            }
+            logger.info('Demo users seeded successfully.');
+        }
+    } catch (err) {
+        logger.warn('Auto-seed skipped:', err.message);
+    }
+}
+
 // Database Connection and Server Start
 const startServer = async () => {
     try {
         await sequelize.authenticate();
         logger.info('Database connection has been established successfully.');
 
-        // Sync models - use plain sync to avoid duplicate index issues
-        // For schema changes, use migrations instead of alter:true
-        if (process.env.NODE_ENV !== 'production') {
-            await sequelize.sync();
-            logger.info('Database models synced (development mode).');
-        }
+        // Sync models - creates tables if they don't exist
+        await sequelize.sync();
+        logger.info('Database models synced.');
+
+        // Auto-seed demo users if Users table is empty
+        await seedDemoUsers();
 
         server = app.listen(PORT, () => {
             logger.info(`Server is running on port ${PORT}`);
