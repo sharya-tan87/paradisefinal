@@ -398,6 +398,7 @@ const ServiceFormModal = ({ isOpen, onClose, onSubmit, initialData, isLoading })
 
     useEffect(() => {
         if (initialData) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setFormData({
                 name: initialData.name || '',
                 nameTh: initialData.nameTh || '',

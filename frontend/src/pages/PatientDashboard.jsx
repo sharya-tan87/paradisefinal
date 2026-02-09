@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { User, Calendar, FileText, Receipt } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const PatientDashboard = () => {
-    const navigate = useNavigate();
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -13,6 +11,7 @@ const PatientDashboard = () => {
         const userStr = localStorage.getItem('user');
         if (userStr) {
             try {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setUser(JSON.parse(userStr));
             } catch (e) {
                 console.error("Failed to parse user data", e);

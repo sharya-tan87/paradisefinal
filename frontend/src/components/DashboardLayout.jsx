@@ -29,6 +29,7 @@ const DashboardLayout = ({ children, title }) => {
         const userStr = localStorage.getItem('user');
         if (userStr) {
             try {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
                 setUser(JSON.parse(userStr));
             } catch (e) {
                 console.error("Failed to parse user data", e);

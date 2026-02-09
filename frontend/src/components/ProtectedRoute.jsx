@@ -24,33 +24,35 @@ const ProtectedRoute = ({ children, allowedRoles = [] }) => {
             return <Navigate to="/login" state={{ from: location }} replace />;
         }
 
+        let user = null;
         try {
-            const user = JSON.parse(userStr);
-            const userRole = user.role;
-            const userLevel = ROLE_HIERARCHY[userRole] || 0;
-
-            // Check if user's role is in allowed roles (exact match)
-            if (allowedRoles.includes(userRole)) {
-                return children;
-            }
-
-            // Check hierarchy: user can access if their level >= highest required level
-            // Use Math.min because if ANY of the allowed roles is lower than or equal to user's level, they should pass?
-            // Actually, we want the BASE requirement. 
-            // If allowed=['staff', 'admin'], base is Staff (2). Manager(4) should access. 
-            // So we need MIN level.
-            const requiredLevel = Math.min(...allowedRoles.map(r => ROLE_HIERARCHY[r] || 0));
-
-            if (userLevel >= requiredLevel) {
-                return children;
-            }
-
-            // Not authorized
-            return <Navigate to="/unauthorized" replace />;
+            user = JSON.parse(userStr);
         } catch {
             // If JSON parse fails, force login
             return <Navigate to="/login" state={{ from: location }} replace />;
         }
+
+        const userRole = user.role;
+        const userLevel = ROLE_HIERARCHY[userRole] || 0;
+
+        // Check if user's role is in allowed roles (exact match)
+        if (allowedRoles.includes(userRole)) {
+            return children;
+        }
+
+        // Check hierarchy: user can access if their level >= highest required level
+        // Use Math.min because if ANY of the allowed roles is lower than or equal to user's level, they should pass?
+        // Actually, we want the BASE requirement.
+        // If allowed=['staff', 'admin'], base is Staff (2). Manager(4) should access.
+        // So we need MIN level.
+        const requiredLevel = Math.min(...allowedRoles.map(r => ROLE_HIERARCHY[r] || 0));
+
+        if (userLevel >= requiredLevel) {
+            return children;
+        }
+
+        // Not authorized
+        return <Navigate to="/unauthorized" replace />;
     }
 
     return children;

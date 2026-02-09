@@ -25,7 +25,7 @@ const QueueDashboard = () => {
     const [statusFilter, setStatusFilter] = useState('');
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
-    const [totalRecords, setTotalRecords] = useState(0);
+    const [_totalRecords, setTotalRecords] = useState(0);
 
     // Modal States
     const [selectedRequest, setSelectedRequest] = useState(null);

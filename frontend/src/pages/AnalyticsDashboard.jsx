@@ -29,6 +29,7 @@ const STATUS_COLORS = {
 };
 
 // KPI Card Component - Brand compliant
+// eslint-disable-next-line no-unused-vars
 const KPICard = ({ title, value, icon: Icon, loading }) => (
     <div className="bg-white p-6 rounded-xl border border-brand-light shadow-soft">
         {loading ? (

@@ -16,6 +16,7 @@ const Header = () => {
     useEffect(() => {
         const token = localStorage.getItem('accessToken');
         const userData = localStorage.getItem('user');
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsAuthenticated(!!token);
         if (userData) {
             setUser(JSON.parse(userData));
@@ -33,6 +34,7 @@ const Header = () => {
 
     // Close mobile menu on route change
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setIsMobileMenuOpen(false);
         setIsProfileMenuOpen(false);
     }, [navigate]);

@@ -38,6 +38,7 @@ const ViewPatientModal = ({ isOpen, onClose, patient }) => {
 
     if (!isOpen || !patient) return null;
 
+    // eslint-disable-next-line no-unused-vars
     const TabButton = ({ id, label, icon: Icon }) => (
         <button
             onClick={() => setActiveTab(id)}
