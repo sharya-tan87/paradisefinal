@@ -28,15 +28,14 @@ app.use(helmet({
 }));
 
 // CORS middleware - environment-aware configuration
-const corsOrigins = process.env.NODE_ENV === 'production'
-    ? [process.env.FRONTEND_URL].filter(Boolean)
-    : [
-        'http://localhost:5173',
-        'http://localhost:5174',
-        'http://127.0.0.1:5173',
-        'http://127.0.0.1:5174',
-        'https://sharya-tan87.github.io'
-    ];
+const corsOrigins = [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'http://127.0.0.1:5173',
+    'http://127.0.0.1:5174',
+    'https://sharya-tan87.github.io',
+    process.env.FRONTEND_URL,
+].filter(Boolean);
 
 if (corsOrigins.length === 0) {
     logger.warn('WARNING: No CORS origins configured!');
